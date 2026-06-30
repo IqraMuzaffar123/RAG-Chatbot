@@ -1,0 +1,135 @@
+# Operating Agreement Guide — LLC Operating Agreement Essentials
+
+## What Is an Operating Agreement?
+
+An LLC operating agreement is a legal document that outlines the ownership structure, management responsibilities, financial arrangements, and operating procedures of a Limited Liability Company. It is an internal document — not filed with the state — that serves as the foundational governance document for the LLC.
+
+The operating agreement functions similarly to corporate bylaws for a corporation or a partnership agreement for a partnership. It defines the rights, responsibilities, and obligations of the LLC members and establishes rules for how the business will be run.
+
+## Why Is an Operating Agreement Important?
+
+Even though not all states legally require an operating agreement, having one is critical for several reasons:
+
+- **Liability protection:** Courts may be more likely to "pierce the corporate veil" and hold members personally liable if the LLC does not have an operating agreement demonstrating that it operates as a separate entity
+- **Prevents default state rules:** Without an operating agreement, your LLC is governed by your state's default LLC statutes, which may not align with your intentions (for example, default rules typically split profits equally among members regardless of capital contributions)
+- **Dispute resolution:** Provides clear procedures for resolving disagreements between members
+- **Bank requirements:** Many banks require a copy of the operating agreement to open a business bank account
+- **Investor confidence:** Investors and lenders often want to review the operating agreement before committing funds
+
+## States That Require an Operating Agreement
+
+- **New York:** Required by law (NY Limited Liability Company Law, Section 417). Must be adopted within 90 days of filing the Articles of Organization.
+- **California:** Required by law (California Corporations Code, Section 17701.10)
+- **Maine:** Required by law (Maine Revised Statutes, Title 31, Section 1561)
+- **Missouri:** Required by law (Missouri Revised Statutes, Section 347.081)
+- **Delaware:** Not legally required, but Delaware's LLC Act provides that an operating agreement governs the affairs of the LLC, and the state's flexible default rules are designed to be customized by an operating agreement
+
+Even in states where an operating agreement is not required, the SBA strongly recommends that all LLCs adopt one.
+
+## Key Provisions of an Operating Agreement
+
+### 1. Organization and Formation Details
+
+- Legal name of the LLC
+- Date of formation and state of formation
+- Principal office address
+- Purpose of the LLC (general or specific)
+- Duration of the LLC (perpetual or fixed term)
+- Registered agent information
+
+### 2. Membership and Ownership
+
+- Names and addresses of all members
+- Percentage of ownership interest for each member
+- Initial capital contributions made by each member
+- Procedures for additional capital contributions
+- Procedures for admitting new members
+- Procedures for transferring membership interests
+
+### 3. Management Structure
+
+LLCs can be structured as either member-managed or manager-managed:
+
+**Member-Managed LLC:**
+- All members participate in day-to-day management decisions
+- Each member has the authority to bind the LLC in business transactions
+- Voting rights are typically proportional to ownership percentage
+- Best for small LLCs where all members are actively involved
+
+**Manager-Managed LLC:**
+- One or more designated managers (who may or may not be members) handle daily operations
+- Members who are not managers have limited management authority
+- Managers are appointed by the members and can be removed by member vote
+- Best for LLCs with passive investors or when professional management is preferred
+
+### 4. Profit and Loss Distribution
+
+- How profits and losses will be allocated among members (can differ from ownership percentages)
+- Frequency of distributions (monthly, quarterly, annually, or at the managers' discretion)
+- Tax distribution provisions (ensuring members receive enough to cover their tax obligations on pass-through income)
+- Restrictions on distributions (e.g., maintaining minimum cash reserves)
+
+### 5. Voting Rights and Decision-Making
+
+- Voting rights for ordinary business decisions (typically majority vote)
+- Decisions requiring supermajority or unanimous consent (such as admitting new members, taking on debt above a certain amount, selling major assets, or amending the operating agreement)
+- Deadlock resolution procedures
+- Proxy voting provisions
+
+### 6. Transfer of Membership Interests
+
+- Right of first refusal: existing members have the first opportunity to purchase a departing member's interest
+- Restrictions on transfers to third parties
+- Valuation method for determining the fair market value of a member's interest
+- Buy-sell provisions (also called buyout provisions)
+- Drag-along and tag-along rights (for multi-member LLCs with majority and minority members)
+
+### 7. Dissolution and Winding Up
+
+- Events that trigger dissolution (member vote, court order, administrative dissolution)
+- Procedures for winding up the LLC's affairs
+- Order of distribution of remaining assets (typically: creditors first, then members' capital contributions, then remaining assets per ownership percentages)
+
+### 8. Dispute Resolution
+
+- Mediation as a first step
+- Arbitration procedures (binding or non-binding)
+- Governing law and jurisdiction for legal disputes
+- Attorney's fees provisions (whether the losing party pays the prevailing party's legal fees)
+
+## Single-Member LLC Operating Agreement
+
+Even single-member LLCs benefit from having an operating agreement. Key reasons include:
+
+- **Separating personal and business affairs:** Demonstrates that the LLC is a separate entity, which strengthens liability protection
+- **Banking requirements:** Most banks require an operating agreement to open a business account for an LLC
+- **Establishing operating procedures:** Documents how the LLC will be managed, how profits will be distributed, and what happens if the sole member becomes incapacitated or dies
+- **Succession planning:** Specifies what happens to the LLC upon the member's death (transfer to heirs, dissolution, etc.)
+
+A single-member operating agreement is simpler than a multi-member agreement but should still cover:
+- Sole member identification and capital contribution
+- Management authority
+- Profit distribution
+- Dissolution provisions
+- Succession or transfer provisions
+
+## Multi-Member LLC Operating Agreement
+
+Multi-member LLCs should have a more detailed operating agreement that addresses:
+
+- How capital contributions will be divided and whether future contributions are required
+- How profits and losses will be split (which may differ from ownership percentages)
+- What happens when a member wants to leave the LLC
+- How disputes between members will be resolved
+- What decisions require unanimous consent versus majority vote
+- How new members can be admitted
+- Buy-sell provisions in case of death, disability, or retirement of a member
+
+## Tips for Creating an Operating Agreement
+
+- Consult with a business attorney, especially for multi-member LLCs
+- Be specific about financial arrangements — vague language leads to disputes
+- Address worst-case scenarios (member disputes, member death, bankruptcy)
+- Review and update the operating agreement periodically as the business evolves
+- Keep a signed copy in a safe location and provide copies to all members
+- Do not file the operating agreement with the state unless specifically required — it is a private internal document

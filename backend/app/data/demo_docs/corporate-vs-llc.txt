@@ -1,0 +1,118 @@
+# Business Entity Comparison — LLC vs Corporation vs Sole Proprietorship
+
+## Overview
+
+Choosing the right business structure is one of the most important decisions for a new business owner. The three most common structures are Sole Proprietorship, Limited Liability Company (LLC), and Corporation (including S Corporation and C Corporation). Each has distinct advantages and disadvantages in terms of liability protection, taxation, management flexibility, and cost.
+
+The U.S. Small Business Administration (SBA) recommends evaluating your specific needs, including liability risk, tax situation, number of owners, and growth plans, before selecting a structure.
+
+## Sole Proprietorship
+
+A sole proprietorship is the simplest and most common business structure. It is an unincorporated business owned by one individual. No formal filing is required to create a sole proprietorship — you are automatically considered a sole proprietor if you start conducting business activities as an individual.
+
+### Advantages
+
+- **Simplest to create:** No state formation documents required
+- **Lowest cost:** No formation fees or annual report fees
+- **Complete control:** The owner makes all business decisions
+- **Pass-through taxation:** Business income is reported on the owner's personal tax return (Schedule C, Form 1040)
+- **Easy to dissolve:** Simply stop doing business
+
+### Disadvantages
+
+- **Unlimited personal liability:** The owner is personally liable for all business debts and legal obligations. Personal assets (home, car, savings) can be seized to satisfy business debts
+- **Difficulty raising capital:** Cannot sell ownership shares; limited to personal funds and loans
+- **Limited lifespan:** The business ceases to exist when the owner dies or stops operating
+- **Less credibility:** May be perceived as less established by clients, vendors, and lenders
+- **Self-employment tax:** Subject to the full 15.3% self-employment tax on all net business income
+
+## Limited Liability Company (LLC)
+
+An LLC is a hybrid business structure that provides the limited liability protection of a corporation with the tax flexibility of a partnership or sole proprietorship.
+
+### Advantages
+
+- **Limited liability:** Members' personal assets are generally protected from business debts and lawsuits. Liability is limited to the member's investment in the LLC
+- **Tax flexibility:** By default, a single-member LLC is taxed as a sole proprietorship, and a multi-member LLC is taxed as a partnership. An LLC can also elect to be taxed as an S Corporation or C Corporation
+- **Management flexibility:** Can be member-managed (all members participate) or manager-managed (designated managers run the business)
+- **Fewer formalities:** Unlike corporations, LLCs are generally not required to hold annual meetings, keep formal minutes, or maintain a board of directors
+- **Flexible profit distribution:** Profits can be distributed in proportions different from ownership percentages (subject to the operating agreement)
+
+### Disadvantages
+
+- **Self-employment tax:** Members of an LLC may be subject to self-employment tax on their share of the LLC's income (unless the LLC elects S Corporation tax treatment)
+- **State fees:** Formation fees, annual report fees, and franchise taxes vary by state and can be significant (e.g., California's $800 annual franchise tax)
+- **Limited life in some states:** Some states may dissolve the LLC upon the death or withdrawal of a member (though most modern LLC statutes allow for perpetual existence)
+- **Varying state laws:** LLC laws differ from state to state, which can create complexity for multi-state businesses
+
+### Best For
+
+- Small to medium-sized businesses with moderate liability risk
+- Real estate investors
+- Professional service providers
+- Businesses with multiple owners who want management flexibility
+- Business owners who want liability protection without corporate formalities
+
+## C Corporation
+
+A C Corporation (C Corp) is a legal entity that is separate and distinct from its owners (shareholders). It is the standard corporate structure and offers the strongest liability protection.
+
+### Advantages
+
+- **Strongest liability protection:** Shareholders are not personally liable for corporate debts. Liability is limited to the shareholder's investment in the corporation
+- **Ability to raise capital:** Can issue multiple classes of stock to attract investors. Preferred by venture capitalists and institutional investors
+- **Unlimited shareholders:** No limit on the number of shareholders; shareholders can be individuals, corporations, or foreign entities
+- **Perpetual existence:** The corporation continues to exist regardless of changes in ownership
+- **Employee benefits:** Can offer tax-deductible fringe benefits, stock options, and employee stock purchase plans
+- **Credibility:** The corporate structure is well-understood by lenders, investors, and business partners
+
+### Disadvantages
+
+- **Double taxation:** Corporate profits are taxed at the corporate level (federal corporate tax rate is 21%), and dividends paid to shareholders are taxed again on their personal tax returns
+- **More formalities:** Required to hold annual shareholder and director meetings, maintain corporate minutes, and comply with extensive recordkeeping requirements
+- **Higher costs:** Formation fees, annual report fees, legal fees, and accounting fees are typically higher than for LLCs or sole proprietorships
+- **Less flexibility:** Governed by rigid corporate statutes and bylaws; profit distribution must follow share ownership
+
+### Best For
+
+- Businesses planning to go public or seek venture capital
+- Businesses that want to reinvest profits in the company (retained earnings taxed at corporate rate)
+- Companies with many investors or shareholders
+- Businesses planning to offer stock options to employees
+
+## S Corporation
+
+An S Corporation (S Corp) is not a separate business structure but rather a tax election made by an eligible corporation or LLC. By filing IRS Form 2553, a business can elect S Corporation tax status, which provides pass-through taxation while maintaining the corporate structure.
+
+### Advantages
+
+- **Pass-through taxation:** S Corp income passes through to shareholders' personal tax returns, avoiding double taxation
+- **Self-employment tax savings:** Shareholders who are also employees pay themselves a reasonable salary (subject to employment taxes), but additional profit distributions are not subject to self-employment tax
+- **Limited liability:** Same liability protection as a C Corporation
+
+### Disadvantages
+
+- **Ownership restrictions:** Limited to 100 shareholders; shareholders must be U.S. citizens or residents; cannot have corporate or partnership shareholders; only one class of stock allowed
+- **Reasonable salary requirement:** The IRS requires shareholder-employees to pay themselves a "reasonable" salary, and it scrutinizes unreasonably low salaries
+- **Corporate formalities:** Still subject to the same formalities as a C Corporation (meetings, minutes, bylaws)
+- **Limited allocation flexibility:** Profits and losses must be allocated in proportion to ownership
+
+### Best For
+
+- Small businesses with a limited number of owners who want pass-through taxation with liability protection
+- Business owners who want to reduce self-employment tax
+- Businesses that do not plan to take on outside investors or go public
+
+## Quick Comparison Table
+
+| Feature | Sole Proprietorship | LLC | C Corporation | S Corporation |
+|---------|-------------------|-----|---------------|---------------|
+| Liability protection | None | Yes | Yes | Yes |
+| Formation required | No | Yes (state filing) | Yes (state filing) | Yes (state filing + IRS Form 2553) |
+| Taxation | Pass-through | Flexible (pass-through or corporate) | Double taxation | Pass-through |
+| Self-employment tax | Yes (15.3%) | Yes (unless S Corp election) | No (salary + dividends) | Partial (salary only) |
+| Number of owners | One | Unlimited | Unlimited | Max 100 |
+| Raising capital | Difficult | Moderate | Easiest | Limited |
+| Formalities | Minimal | Low | High | High |
+| Annual state filings | None typically | Yes | Yes | Yes |
+| Best for | Solo freelancers, low-risk businesses | Most small businesses | Growth-oriented, VC-backed | Small businesses wanting tax savings |

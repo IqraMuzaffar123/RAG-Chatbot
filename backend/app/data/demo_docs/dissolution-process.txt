@@ -1,0 +1,124 @@
+# Dissolution Process — How to Dissolve an LLC or Corporation
+
+## Overview
+
+Dissolving a business entity is a formal legal process that ends the entity's existence with the state. Simply ceasing business operations is not sufficient — you must follow the proper dissolution procedures to avoid ongoing fees, tax obligations, and potential personal liability. The dissolution process involves internal decisions, state filings, tax clearances, and winding up of business affairs.
+
+The U.S. Small Business Administration (SBA) advises business owners to follow all required steps when closing a business to avoid future complications.
+
+## Types of Dissolution
+
+### Voluntary Dissolution
+
+Voluntary dissolution occurs when the business owners decide to close the business. This is the most common form of dissolution and requires a formal vote or decision followed by state filings.
+
+### Administrative Dissolution
+
+Administrative dissolution occurs when the state revokes or dissolves the business entity for noncompliance, such as failure to file annual reports, failure to pay franchise taxes, or failure to maintain a registered agent. An administratively dissolved entity can typically be reinstated by curing the noncompliance and paying back fees and penalties.
+
+### Judicial Dissolution
+
+Judicial dissolution occurs when a court orders the dissolution of the business, typically due to deadlock among members or shareholders, fraud, mismanagement, or oppression of minority members.
+
+## Steps to Dissolve an LLC
+
+### Step 1: Vote to Dissolve
+
+Review your operating agreement for dissolution provisions. Most operating agreements specify the voting requirements for dissolution (e.g., majority vote, supermajority, or unanimous consent). If there is no operating agreement, follow your state's default LLC statute, which typically requires a majority vote of the members.
+
+Document the decision to dissolve in writing, including:
+- Date of the vote
+- Names of members who voted
+- Vote count and outcome
+- Effective date of dissolution
+
+### Step 2: File Articles of Dissolution with the State
+
+File the formal dissolution document with your state's Secretary of State or Division of Corporations.
+
+**State-Specific Filing Requirements:**
+
+- **Texas:** File a Certificate of Termination with the Texas Secretary of State. Filing fee: $40. Can be filed online or by mail.
+- **California:** File a Certificate of Cancellation (Form LLC-4/7) with the California Secretary of State. Filing fee: $0 (no fee for dissolution filing). Must also file a final tax return with the Franchise Tax Board.
+- **Delaware:** File a Certificate of Cancellation with the Delaware Division of Corporations. Filing fee: $200. All annual taxes must be paid before the certificate will be accepted.
+- **New York:** File Articles of Dissolution with the New York Department of State. Filing fee: $60. Requires that all debts and liabilities of the LLC have been paid or provided for.
+- **Florida:** File Articles of Dissolution with the Florida Division of Corporations (Sunbiz). Filing fee: $25 (online filing). All annual reports must be current before dissolution.
+
+### Step 3: Notify Creditors and Settle Debts
+
+- Send written notice to all known creditors informing them of the dissolution
+- Provide a deadline for creditors to submit claims (typically 90 to 120 days)
+- Settle all outstanding debts and obligations
+- Publish a notice of dissolution in a local newspaper (required in some states) to notify unknown creditors
+
+### Step 4: Cancel Licenses, Permits, and Registrations
+
+- Cancel your Employer Identification Number (EIN) by writing to the IRS — note that an EIN is never reissued, but you can close the associated business account
+- Cancel state and local business licenses and permits
+- Cancel your sales tax permit with the state tax authority
+- Cancel fictitious business name (DBA) registrations
+- Close out any professional licenses
+
+### Step 5: File Final Tax Returns
+
+- File a final federal tax return marked as "Final Return" (check the appropriate box on your tax form)
+- File final state tax returns with your state's tax authority
+- File final employment tax returns (Form 941 for quarterly federal tax return, Form 940 for annual federal unemployment tax return)
+- Issue final W-2s to employees and 1099s to contractors
+- Pay any remaining tax obligations
+
+### Step 6: Distribute Remaining Assets
+
+After all debts are paid and tax obligations are satisfied, distribute the remaining assets to members according to the operating agreement. The typical order of distribution is:
+
+1. Payment of all outstanding debts and liabilities
+2. Return of members' capital contributions
+3. Distribution of remaining assets in accordance with ownership percentages or as specified in the operating agreement
+
+### Step 7: Cancel Foreign Qualifications
+
+If your LLC was registered to do business in other states (foreign qualification), you must file a withdrawal or cancellation in each of those states. This involves filing a Certificate of Withdrawal or Application for Withdrawal of Registration with each state and paying the associated fees.
+
+## Steps to Dissolve a Corporation
+
+The process for dissolving a corporation is similar to dissolving an LLC but includes additional corporate formalities:
+
+### Step 1: Board Resolution and Shareholder Vote
+
+- The board of directors must adopt a resolution recommending dissolution
+- The resolution is then submitted to the shareholders for a vote
+- Most states require approval by a majority of shares entitled to vote
+- Some states require a two-thirds supermajority for dissolution
+
+### Step 2: File Certificate of Dissolution
+
+File the appropriate dissolution document with the state. The document names vary by state (Certificate of Dissolution, Articles of Dissolution, etc.).
+
+### Step 3: Wind Up Business Affairs
+
+- Notify creditors and settle debts
+- Cancel licenses and permits
+- File final tax returns
+- Distribute remaining assets to shareholders
+
+## Important Considerations
+
+### Timing
+
+- Plan to begin the dissolution process several months before your desired end date
+- Allow time for creditor notice periods, final tax filings, and asset distributions
+- Some states require tax clearance certificates before they will accept dissolution filings
+
+### Record Retention
+
+Even after dissolution, you should retain business records for:
+- **Tax records:** At least 7 years (IRS recommends keeping records for 7 years for claims of loss from worthless securities or bad debt deduction)
+- **Employment records:** At least 4 years after the tax becomes due or is paid
+- **Corporate records:** Permanently (minutes, articles, bylaws, stock records)
+
+### Reinstating a Dissolved Entity
+
+If a business was dissolved by mistake or the owners want to resume operations:
+- Most states allow reinstatement within a certain time period (typically 2 to 5 years after dissolution)
+- Reinstatement requires filing an application, paying back fees and penalties, and curing any noncompliance
+- The specific process and time limits vary by state

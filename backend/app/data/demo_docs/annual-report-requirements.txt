@@ -1,0 +1,93 @@
+# Annual Report Requirements — State Filing Obligations for LLCs and Corporations
+
+## What Is an Annual Report?
+
+An annual report (also called an annual statement, periodic report, or statement of information in some states) is a document that businesses must file with the state to keep their registration current. It typically confirms or updates basic information about the business, such as:
+
+- Business name and principal office address
+- Names and addresses of members, managers, officers, or directors
+- Registered agent name and address
+- Business purpose or nature of business activities
+
+Annual reports are different from financial annual reports prepared for shareholders. State annual reports are primarily administrative filings that ensure the state has current information about businesses operating within its jurisdiction.
+
+## Why Is the Annual Report Important?
+
+Filing your annual report on time is essential for maintaining your business in good standing with the state. Good standing status is required to:
+
+- Conduct business legally in the state
+- Obtain business loans and lines of credit
+- Enter into contracts with government agencies
+- Maintain the liability protection of your LLC or corporation
+- File lawsuits in state court
+- Qualify to do business in other states (foreign qualification)
+
+## State-by-State Annual Report Requirements
+
+### Texas
+
+- **LLCs and Corporations:** Texas does not require a traditional annual report. Instead, all taxable entities must file an annual Franchise Tax Report and a Public Information Report (PIR) with the Texas Comptroller of Public Accounts.
+- **Due date:** May 15 of each year
+- **Filing method:** Online through the Texas Comptroller's WebFile system or by mail
+- **Cost:** No filing fee for the report itself, but franchise tax may be due depending on revenue
+- **No Tax Due Threshold:** Entities with total revenue at or below $2.47 million (as of 2024) can file a No Tax Due Report
+- **Penalty for late filing:** 5% of the tax due if filed within 30 days of the deadline, plus an additional 5% if filed more than 30 days late
+
+### California
+
+- **LLCs:** Must file a Statement of Information (Form LLC-12) every two years with the California Secretary of State
+- **Corporations:** Must file a Statement of Information (Form SI-550) annually
+- **Due date (LLCs):** Every two years during the applicable filing period, based on the month of formation
+- **Due date (Corporations):** Annually, due by the last day of the filing month
+- **Filing method:** Online through the California Secretary of State's bizfile system or by mail
+- **Cost:** $20 for LLCs; $25 for corporations
+- **Franchise Tax:** California LLCs must also pay an annual minimum franchise tax of $800 to the Franchise Tax Board, due by the 15th day of the 4th month after the beginning of the tax year
+- **Penalty for late filing:** $250 penalty for late Statement of Information filing
+
+### Delaware
+
+- **LLCs:** Must file an Annual Report with the Delaware Division of Corporations
+- **Corporations:** Must file an Annual Report and pay franchise tax
+- **Due date (LLCs):** June 1 of each year
+- **Due date (Corporations):** March 1 of each year
+- **Filing method:** Online through the Delaware Division of Corporations website
+- **Cost (LLCs):** $300 annual tax (no report filing fee)
+- **Cost (Corporations):** Minimum $225 franchise tax plus $50 annual report fee. Franchise tax for corporations is calculated using either the Authorized Shares Method or the Assumed Par Value Capital Method
+- **Penalty for late filing (LLCs):** $200 late penalty plus 1.5% monthly interest
+- **Penalty for late filing (Corporations):** $200 late penalty plus 1.5% monthly interest
+
+### New York
+
+- **LLCs:** Must file a Biennial Statement with the New York Department of State every two years
+- **Corporations:** Must file a Biennial Statement every two years
+- **Due date:** During the anniversary month of formation, every two years
+- **Filing method:** Online through the New York Department of State website or by mail
+- **Cost:** $9 for online filing
+- **Penalty for late filing:** No specific monetary penalty, but failure to file may result in the entity being marked as "past due" and eventual administrative dissolution
+
+### Florida
+
+- **LLCs and Corporations:** Must file an Annual Report with the Florida Division of Corporations (Sunbiz)
+- **Due date:** May 1 of each year
+- **Filing method:** Online through Sunbiz.org
+- **Cost:** $138.75 for LLCs; $150 for corporations
+- **Penalty for late filing:** $400 late fee if filed between May 2 and the third Friday in September
+- **Administrative dissolution:** If not filed by the third Friday in September, the entity is administratively dissolved
+
+## Common Mistakes to Avoid
+
+- **Missing the deadline:** Set calendar reminders well in advance of your filing deadline
+- **Incorrect information:** Double-check all names, addresses, and agent information before submitting
+- **Forgetting to update registered agent:** If your registered agent has changed, update this information when filing your annual report
+- **Confusing state and federal requirements:** The state annual report is separate from federal tax filings (IRS Form 1065 for partnerships, Form 1120 for corporations)
+- **Ignoring states where you are foreign-qualified:** If your business is registered in multiple states, you must file annual reports in each state
+
+## What Happens If You Miss the Filing Deadline?
+
+Consequences of late or missed annual report filings vary by state but typically include:
+
+- **Late fees and penalties:** Ranging from $25 to $400 depending on the state
+- **Loss of good standing:** Your business may lose its good standing status, which can affect your ability to secure financing, enter contracts, or transact business
+- **Administrative dissolution or revocation:** The state may administratively dissolve or revoke your business entity. Reinstatement is usually possible but requires payment of all back fees, penalties, and filing of all past-due reports
+- **Loss of name protection:** Once dissolved, your business name may become available for use by other entities
+- **Personal liability exposure:** If your LLC or corporation is administratively dissolved, you may lose the liability protection it provides

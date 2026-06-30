@@ -1,0 +1,112 @@
+# State Filing Fees — LLC and Corporation Formation Costs by State
+
+## Overview
+
+Every state charges a filing fee to form a Limited Liability Company (LLC) or Corporation. These fees vary significantly from state to state, ranging from as low as $40 to as high as $500 for initial formation. In addition to the formation fee, many states charge annual fees, franchise taxes, or report filing fees that represent ongoing costs of maintaining your business entity.
+
+The information below covers the five most popular states for business formation. All fees are based on publicly available information from state government websites and are subject to change.
+
+## LLC Formation Fees by State
+
+### Texas
+- **Formation filing fee:** $300
+- **Filed with:** Texas Secretary of State
+- **Document:** Certificate of Formation
+- **Online filing available:** Yes
+- **Expedited processing:** Available for an additional $25 (24-hour processing)
+- **Annual report fee:** No annual report fee; however, the annual Franchise Tax Report and Public Information Report must be filed with the Texas Comptroller (no separate filing fee)
+- **Name reservation fee:** $40 (reserves name for 120 days)
+
+### California
+- **Formation filing fee:** $70
+- **Filed with:** California Secretary of State
+- **Document:** Articles of Organization (Form LLC-1)
+- **Online filing available:** Yes
+- **Expedited processing:** Available for an additional fee ($350 for same-day, $750 for 4-hour processing)
+- **Biennial Statement of Information fee:** $20 (due every two years)
+- **Annual franchise tax:** $800 minimum (due to the Franchise Tax Board, separate from the Secretary of State filing)
+- **Name reservation fee:** $10 (reserves name for 60 days)
+
+### Delaware
+- **Formation filing fee:** $90
+- **Filed with:** Delaware Division of Corporations
+- **Document:** Certificate of Formation
+- **Online filing available:** Yes
+- **Expedited processing:** Available — same-day ($100 additional), 24-hour ($50 additional)
+- **Annual tax:** $300 (due June 1 each year)
+- **Name reservation fee:** $75 (reserves name for 120 days)
+
+### New York
+- **Formation filing fee:** $200
+- **Filed with:** New York Department of State
+- **Document:** Articles of Organization
+- **Online filing available:** Yes
+- **Expedited processing:** Available for an additional $25 (24-hour processing)
+- **Biennial statement fee:** $9 (due every two years)
+- **Publication requirement cost:** Approximately $1,000 to $2,000+ (varies by county; LLCs must publish notice in two newspapers for six consecutive weeks within 120 days of formation)
+- **Name reservation fee:** $20 (reserves name for 60 days)
+
+### Florida
+- **Formation filing fee:** $125
+- **Filed with:** Florida Division of Corporations (Sunbiz)
+- **Document:** Articles of Organization
+- **Online filing available:** Yes (required — Florida requires online filing)
+- **Expedited processing:** Not available; standard processing is typically 2-3 business days
+- **Annual report fee:** $138.75 (due May 1 each year)
+- **Late filing fee:** $400 (if filed after May 1)
+- **Name reservation fee:** $25 (reserves name for 120 days)
+
+## Corporation Formation Fees by State
+
+### Texas
+- **Formation filing fee:** $300
+- **Filed with:** Texas Secretary of State
+- **Document:** Certificate of Formation
+- **Annual franchise tax:** Based on margin; no tax due if total revenue is at or below $2.47 million
+
+### California
+- **Formation filing fee:** $100
+- **Filed with:** California Secretary of State
+- **Document:** Articles of Incorporation
+- **Annual Statement of Information fee:** $25
+- **Annual franchise tax:** $800 minimum
+
+### Delaware
+- **Formation filing fee:** $89
+- **Filed with:** Delaware Division of Corporations
+- **Document:** Certificate of Incorporation
+- **Annual report fee:** $50
+- **Annual franchise tax:** Minimum $225 (calculated based on authorized shares or assumed par value capital)
+
+### New York
+- **Formation filing fee:** $125
+- **Filed with:** New York Department of State
+- **Document:** Certificate of Incorporation
+- **Biennial statement fee:** $9
+
+### Florida
+- **Formation filing fee:** $70
+- **Filed with:** Florida Division of Corporations (Sunbiz)
+- **Document:** Articles of Incorporation
+- **Annual report fee:** $150
+
+## Additional Cost Considerations
+
+When budgeting for business formation, consider these additional costs beyond the state filing fee:
+
+- **Registered agent service:** $100 to $300 per year if using a professional service
+- **Operating agreement or bylaws:** $0 if self-drafted; $500 to $2,000 if prepared by an attorney
+- **EIN application:** Free (apply directly through IRS.gov)
+- **Business licenses and permits:** Vary widely by location and industry ($50 to $500+)
+- **Business insurance:** General liability insurance typically starts at $300 to $1,000 per year
+- **Business bank account:** Many banks offer free business checking; some require minimum balances
+- **Accounting and tax preparation:** $500 to $3,000+ per year depending on complexity
+- **Legal consultation:** $150 to $400+ per hour for business attorney services
+
+## Tips for Reducing Formation Costs
+
+- File online whenever possible — online filing is often faster and sometimes cheaper than paper filing
+- Apply for your EIN directly through IRS.gov — it is free; avoid third-party services that charge fees
+- Consider whether you truly need to form in a different state — forming in Delaware or Nevada when you operate in another state means paying fees in both states
+- Use free or low-cost templates for operating agreements and bylaws when appropriate
+- Compare registered agent service prices — they range from $49 to $300+ per year

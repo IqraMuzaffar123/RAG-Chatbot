@@ -1,0 +1,106 @@
+# EIN Application Guide — Employer Identification Number
+
+## What Is an EIN?
+
+An Employer Identification Number (EIN), also known as a Federal Tax Identification Number or Federal Employer Identification Number (FEIN), is a unique nine-digit number assigned by the Internal Revenue Service (IRS) to business entities operating in the United States. The EIN is used to identify a business for tax reporting purposes, similar to how a Social Security Number identifies an individual.
+
+The EIN format is XX-XXXXXXX (two digits, a hyphen, then seven digits).
+
+## Who Needs an EIN?
+
+According to the IRS, you must obtain an EIN if any of the following apply:
+
+- You have employees
+- You operate your business as a corporation or partnership
+- You file employment, excise, or alcohol, tobacco, and firearms tax returns
+- You withhold taxes on income (other than wages) paid to a non-resident alien
+- You have a Keogh plan (a tax-deferred pension plan for self-employed individuals)
+- You are involved with trusts, estates, real estate mortgage investment conduits, non-profit organizations, farmers' cooperatives, or plan administrators
+
+### When a Sole Proprietor Needs an EIN
+
+Sole proprietors can use their Social Security Number for tax purposes, but you should get an EIN if you:
+
+- Hire employees
+- Open a business bank account (most banks require an EIN)
+- Establish a retirement plan (SEP-IRA, SIMPLE IRA, Solo 401(k))
+- Want to separate personal and business tax identification
+
+### Multi-Member LLCs
+
+All multi-member LLCs must have an EIN because they are treated as partnerships by default for federal tax purposes. Single-member LLCs are not required to have an EIN unless they have employees or file certain excise tax returns, but obtaining one is recommended.
+
+## How to Apply for an EIN
+
+The IRS offers four methods to apply for an EIN:
+
+### Method 1: Online Application (Recommended)
+
+- **Website:** IRS.gov — search for "Apply for an EIN Online"
+- **Availability:** Monday through Friday, 7:00 a.m. to 10:00 p.m. Eastern Time
+- **Processing time:** Immediate — you receive your EIN at the end of the session
+- **Cost:** Free
+- **Eligibility:** The responsible party must have a valid Taxpayer Identification Number (SSN, ITIN, or existing EIN)
+- **Limitation:** Only one EIN can be obtained per responsible party per day
+
+The online application walks you through a series of questions to determine your entity type, reason for applying, and responsible party information. At the end, you receive an EIN confirmation notice (CP 575) that you can download or print.
+
+### Method 2: Fax Application
+
+- **Form:** IRS Form SS-4 (Application for Employer Identification Number)
+- **Fax number:** Varies by state (check IRS.gov for your state's fax number)
+- **Processing time:** 4 business days
+- **Cost:** Free
+- **When to use:** When you need an EIN quickly but cannot use the online application
+
+### Method 3: Mail Application
+
+- **Form:** IRS Form SS-4
+- **Mailing address:** Varies by state (domestic applicants mail to the IRS center in Cincinnati, OH or Ogden, UT)
+- **Processing time:** 4 to 6 weeks
+- **Cost:** Free
+- **When to use:** When there is no urgency and you prefer a paper process
+
+### Method 4: Telephone Application (International Applicants Only)
+
+- **Phone number:** (267) 941-1099 (not a toll-free number)
+- **Availability:** Monday through Friday, 6:00 a.m. to 11:00 p.m. Eastern Time
+- **Processing time:** Immediate
+- **When to use:** When the responsible party does not have an SSN or ITIN (international applicants)
+
+## Completing IRS Form SS-4
+
+Form SS-4 requires the following information:
+
+- Legal name of the entity
+- Trade name or "doing business as" (DBA) name, if different
+- Mailing address of the entity
+- Responsible party name and SSN/ITIN
+- Type of entity (LLC, corporation, partnership, sole proprietorship, trust, etc.)
+- Reason for applying (started new business, hired employees, banking purposes, etc.)
+- Date the business started or was acquired
+- Highest number of employees expected in the next 12 months
+- Principal business activity and product or service
+- Accounting year-end month
+
+## Important EIN Rules and Facts
+
+- An EIN is permanent — once assigned, it is never reused or reassigned to another entity
+- If you change your business structure (e.g., sole proprietorship to LLC), you generally need a new EIN
+- If your LLC changes from single-member to multi-member (or vice versa), you need a new EIN
+- If an LLC with an EIN changes ownership completely, the new owner needs a new EIN
+- Corporations generally do not need a new EIN when ownership changes, unless the corporation receives a new charter
+- There is no fee to apply for an EIN through any of the four methods; beware of third-party websites that charge fees for this free service
+
+## After Receiving Your EIN
+
+Once you have your EIN, you can:
+
+- Open a business bank account
+- Apply for business licenses and permits
+- File federal and state tax returns
+- Hire employees and set up payroll
+- Apply for business credit and loans
+- File required tax forms (W-2, 1099, etc.)
+
+The IRS will mail an official EIN confirmation letter (CP 575) to the mailing address on your application within 4 to 6 weeks of approval. Keep this letter in a safe place, as it serves as your official EIN verification document.

@@ -1,0 +1,94 @@
+# Business Compliance Checklist — Essential Requirements for New Businesses
+
+## Overview
+
+Starting a new business requires compliance with federal, state, and local regulations. This checklist covers the key compliance areas that most new businesses must address. Requirements vary based on your business structure, industry, and location, so always verify specific requirements with the relevant government agencies.
+
+## 1. Business Formation and Registration
+
+- [ ] Choose a business structure (LLC, corporation, sole proprietorship, partnership)
+- [ ] File formation documents with your state (Articles of Organization for LLCs, Articles of Incorporation for corporations)
+- [ ] Obtain a Certificate of Formation or Certificate of Good Standing from the state
+- [ ] Register your trade name or "Doing Business As" (DBA) name if operating under a name different from your legal entity name
+- [ ] If operating in multiple states, file for foreign qualification in each additional state
+
+## 2. Federal Tax Requirements
+
+- [ ] Apply for an Employer Identification Number (EIN) from the IRS (free at IRS.gov)
+- [ ] Determine your federal tax obligations based on your business structure:
+  - Sole proprietorship: Schedule C with Form 1040
+  - Partnership or multi-member LLC: Form 1065 (partnership return)
+  - S Corporation: Form 1120-S
+  - C Corporation: Form 1120
+- [ ] Set up estimated quarterly tax payments if applicable (Form 1040-ES for individuals, Form 1120-W for corporations)
+- [ ] Register for EFTPS (Electronic Federal Tax Payment System) at eftps.gov for electronic tax payments
+- [ ] Understand self-employment tax obligations (15.3% for sole proprietors and LLC members, covering Social Security and Medicare)
+
+## 3. State and Local Tax Requirements
+
+- [ ] Register with your state tax authority for state income tax (if applicable — some states like Texas, Florida, and Nevada have no state income tax)
+- [ ] Obtain a sales tax permit if you sell taxable goods or services
+- [ ] Register for state unemployment insurance tax (SUTA) if you have employees
+- [ ] Determine if your state has a franchise tax, gross receipts tax, or business privilege tax
+- [ ] Check county and city tax requirements (some municipalities impose local business taxes or gross receipts taxes)
+
+## 4. Employment Compliance
+
+If you plan to hire employees, the following compliance requirements apply:
+
+- [ ] Register for federal employment taxes with the IRS
+- [ ] Register for state employment taxes (income tax withholding and unemployment insurance)
+- [ ] Obtain workers' compensation insurance (required in most states)
+- [ ] Verify employee eligibility using Form I-9 (Employment Eligibility Verification)
+- [ ] Report new hires to your state's New Hire Reporting Program (required within 20 days in most states)
+- [ ] Display required federal workplace posters (OSHA, FLSA, FMLA, EEO, etc.) — available free from the Department of Labor
+- [ ] Display required state workplace posters (varies by state)
+- [ ] Establish a payroll system for tax withholding, Social Security, Medicare, and state taxes
+- [ ] File Form W-4 for each employee (federal withholding allowances)
+- [ ] Provide Form W-2 to each employee by January 31 of the following year
+
+## 5. Business Licenses and Permits
+
+- [ ] Check if your city or county requires a general business license or business tax certificate
+- [ ] Determine if your profession or industry requires a state professional license (examples: contractors, real estate agents, accountants, healthcare providers, cosmetologists)
+- [ ] Obtain health department permits if you handle or serve food
+- [ ] Obtain building permits if you are constructing or renovating a commercial space
+- [ ] Check zoning requirements to ensure your business location is properly zoned for commercial use
+- [ ] Obtain a home occupation permit if operating a business from your residence
+- [ ] Apply for any federal licenses or permits if applicable (examples: alcohol (TTB), firearms (ATF), transportation (DOT), broadcasting (FCC))
+- [ ] Check if your state requires a seller's permit or resale certificate to collect sales tax
+
+## 6. Business Insurance
+
+- [ ] General liability insurance — protects against third-party claims for bodily injury, property damage, and personal injury
+- [ ] Professional liability insurance (errors and omissions) — for service-based businesses
+- [ ] Workers' compensation insurance — required in most states for businesses with employees
+- [ ] Commercial property insurance — covers business property, equipment, and inventory
+- [ ] Business interruption insurance — covers lost income during covered events
+- [ ] Commercial auto insurance — if you use vehicles for business purposes
+- [ ] Cyber liability insurance — if you handle sensitive customer data
+- [ ] Product liability insurance — if you manufacture or sell physical products
+
+## 7. Ongoing Compliance and Recordkeeping
+
+- [ ] File annual reports or statements of information with the state (deadlines vary by state)
+- [ ] Pay annual franchise taxes or business taxes as required by your state
+- [ ] Maintain a registered agent in your state of formation and any states where you are foreign-qualified
+- [ ] Keep corporate or LLC records, including meeting minutes, resolutions, and operating agreements
+- [ ] Maintain separate business bank accounts (do not commingle personal and business funds)
+- [ ] File all required federal, state, and local tax returns on time
+- [ ] Renew business licenses and permits before they expire
+- [ ] Update your state filing if there are changes to your business address, registered agent, or members/officers
+- [ ] Conduct an annual compliance review to ensure all requirements are met
+
+## 8. Industry-Specific Compliance
+
+Certain industries have additional compliance requirements:
+
+- **Healthcare:** HIPAA compliance for patient data, state medical board licensing
+- **Financial services:** SEC, FINRA, or state financial regulatory compliance
+- **Food and beverage:** FDA regulations, state and local health department inspections
+- **Construction:** OSHA safety requirements, state contractor licensing, bonding requirements
+- **E-commerce:** PCI DSS compliance for payment processing, state sales tax nexus rules, privacy policy requirements (CCPA in California, etc.)
+- **Transportation:** DOT regulations, CDL requirements, vehicle safety inspections
+- **Environmental:** EPA regulations, state environmental permits, waste disposal requirements

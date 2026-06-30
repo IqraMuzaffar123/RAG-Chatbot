@@ -1,0 +1,102 @@
+# Registered Agent FAQ — Requirements and Responsibilities
+
+## What Is a Registered Agent?
+
+A registered agent (also called a statutory agent, resident agent, or agent for service of process) is a person or business entity designated to receive official legal and government documents on behalf of a business. Every LLC and corporation formed in the United States is required by state law to maintain a registered agent in the state where it is formed.
+
+The registered agent serves as the official point of contact between the business and the state. They receive important documents including:
+
+- Service of process (lawsuits and legal actions)
+- Official state correspondence and notices
+- Tax forms and notifications from the state
+- Annual report reminders and compliance notices
+- Other government filings and communications
+
+## Who Can Be a Registered Agent?
+
+Each state sets its own requirements for who can serve as a registered agent, but the general requirements are consistent across most states:
+
+### Individual as Registered Agent
+
+- Must be at least 18 years of age
+- Must be a resident of the state where the business is registered
+- Must have a physical street address in that state (P.O. Boxes are not acceptable)
+- Must be available at the registered address during normal business hours to accept documents
+
+### Business Entity as Registered Agent
+
+- Must be authorized to conduct business in the state
+- Must have a physical office address in the state
+- Must maintain regular business hours at that address
+- Professional registered agent services are available in every state
+
+## Can You Be Your Own Registered Agent?
+
+Yes, in most states you can serve as your own registered agent, provided you meet the state requirements. A member, manager, or employee of the LLC can be designated as the registered agent.
+
+### Advantages of Being Your Own Registered Agent
+
+- No annual registered agent service fees (typically $100 to $300 per year)
+- Direct receipt of all legal and government documents
+- Simplicity — no need to coordinate with a third party
+
+### Disadvantages of Being Your Own Registered Agent
+
+- Your personal name and address become part of the public record
+- You must be available at the registered address during all normal business hours (typically 9 a.m. to 5 p.m., Monday through Friday)
+- If you are not available when service of process is attempted, it may result in a default judgment against your business
+- If you move or change addresses, you must update the registered agent information with the state
+- Not practical if you travel frequently or work from multiple locations
+
+## State-Specific Registered Agent Requirements
+
+### Texas
+- The registered agent must have a physical address in Texas
+- Can be an individual Texas resident or a business entity authorized to do business in Texas
+- The registered agent information is included in the Certificate of Formation
+- Changes to the registered agent can be filed online with the Texas Secretary of State for $15
+
+### California
+- California uses the term "agent for service of process"
+- The agent must be a California resident or a corporation authorized to do business in California
+- The agent's address is listed on the Statement of Information (Form LLC-12), which must be filed every two years
+- The agent must maintain an address in California that is not a P.O. Box
+
+### Delaware
+- The registered agent must be located in the State of Delaware
+- Delaware has a large industry of professional registered agent services due to the high volume of businesses incorporated there
+- The registered agent's address must be in Delaware and is listed on the Certificate of Formation
+- Many Delaware registered agent services also provide mail forwarding and compliance reminders
+
+### New York
+- New York uses the term "agent for service of process"
+- The agent must have an address in New York
+- The Secretary of State can also be designated as the agent for service of process, but a separate address for forwarding must still be provided
+- New York requires LLCs to file a Biennial Statement every two years with current agent information
+
+### Florida
+- The registered agent must have a physical street address in Florida
+- Can be an individual Florida resident or a business entity authorized to transact business in Florida
+- The registered agent information is included in the Articles of Organization
+- The registered agent must sign and accept the appointment on the formation document
+
+## When to Use a Professional Registered Agent Service
+
+Consider using a professional registered agent service if:
+
+- You do not have a physical office in the state of formation
+- You value privacy and do not want your personal address on public records
+- You form your LLC in a state where you do not reside (foreign qualification scenarios)
+- You want to ensure reliable receipt of legal documents
+- You prefer to receive compliance reminders and deadline notifications
+- You operate in multiple states and need a registered agent in each state
+
+## Consequences of Not Maintaining a Registered Agent
+
+Failing to maintain a registered agent can result in serious consequences:
+
+- **Loss of good standing:** The state may revoke your LLC's good standing status
+- **Administrative dissolution:** The state may administratively dissolve your LLC for failure to maintain a registered agent
+- **Default judgments:** If a lawsuit is filed and the process server cannot locate your registered agent, the court may enter a default judgment against your business
+- **Missed deadlines:** Without a registered agent to receive notices, you may miss filing deadlines for annual reports, tax returns, or other required documents
+- **Penalties and fees:** Late filing penalties, reinstatement fees, and other costs can accumulate quickly

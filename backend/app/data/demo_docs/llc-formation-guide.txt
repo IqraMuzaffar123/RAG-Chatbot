@@ -1,0 +1,103 @@
+# LLC Formation Guide — How to Form a Limited Liability Company
+
+## Overview
+
+A Limited Liability Company (LLC) is a business structure that combines the pass-through taxation of a partnership or sole proprietorship with the limited liability protection of a corporation. LLCs are formed at the state level, and each state has its own requirements, fees, and processes.
+
+According to the U.S. Small Business Administration (SBA), an LLC is one of the most popular business structures for small businesses because it is relatively simple to set up and provides personal asset protection.
+
+## Step 1: Choose Your State of Formation
+
+You can form an LLC in any state, but most small businesses form in the state where they will primarily conduct business. Some businesses choose to form in states like Delaware, Nevada, or Wyoming due to favorable business laws, but doing so requires foreign qualification in your home state if you operate there.
+
+### State-Specific Considerations
+
+- **Texas:** File a Certificate of Formation with the Texas Secretary of State. Texas has no state income tax, making it attractive for business owners. The filing fee is $300.
+- **California:** File Articles of Organization (Form LLC-1) with the California Secretary of State. California imposes an annual minimum franchise tax of $800, regardless of income. The filing fee is $70.
+- **Delaware:** File a Certificate of Formation with the Delaware Division of Corporations. Delaware is known for its business-friendly Court of Chancery and flexible LLC laws. The filing fee is $90.
+- **New York:** File Articles of Organization with the New York Department of State. New York requires LLCs to publish a notice of formation in two newspapers for six consecutive weeks, which can cost $1,000 to $2,000 depending on the county. The filing fee is $200.
+- **Florida:** File Articles of Organization with the Florida Division of Corporations (Sunbiz). Florida has no state personal income tax. The filing fee is $125.
+
+## Step 2: Choose a Name for Your LLC
+
+Your LLC name must be distinguishable from other business names already on file with your state. Most states require the name to include "LLC," "L.L.C.," or "Limited Liability Company."
+
+### Name Requirements
+
+- The name must not imply the LLC is a different type of entity (e.g., "Corporation" or "Inc.").
+- The name cannot include words that are restricted by the state, such as "Bank," "Insurance," or "University," without special approval.
+- Most states allow you to reserve a business name for 60 to 120 days by filing a name reservation form and paying a small fee ($10 to $50).
+
+## Step 3: Appoint a Registered Agent
+
+Every LLC must designate a registered agent (also called a statutory agent or agent for service of process) in the state of formation. The registered agent receives legal documents, tax notices, and official government correspondence on behalf of the LLC.
+
+- The registered agent must have a physical street address (not a P.O. Box) in the state of formation.
+- The registered agent must be available during normal business hours.
+- You can serve as your own registered agent, appoint a member or employee, or hire a professional registered agent service (typically $100 to $300 per year).
+
+## Step 4: File Articles of Organization
+
+The Articles of Organization (called Certificate of Formation in some states) is the primary document filed with the state to officially create your LLC. The document typically includes:
+
+- LLC name and principal address
+- Registered agent name and address
+- Names of organizers or members
+- Purpose of the LLC (most states allow a general purpose statement)
+- Management structure (member-managed or manager-managed)
+- Effective date (can be a future date in most states)
+- Duration of the LLC (most states allow perpetual existence)
+
+### Filing Methods
+
+- **Online:** Most states offer online filing through the Secretary of State website. Online filing is usually faster, with processing times of 1 to 5 business days.
+- **Mail:** You can mail the completed form with a check or money order. Mail processing typically takes 2 to 6 weeks.
+- **In person:** Some states allow walk-in filing at the Secretary of State office for same-day processing, sometimes for an additional expedite fee.
+
+## Step 5: Create an Operating Agreement
+
+While not required in every state, an operating agreement is strongly recommended for all LLCs. It outlines the ownership structure, management responsibilities, profit distribution, and procedures for adding or removing members.
+
+States that require an operating agreement include:
+- **New York:** Required by law (NY LLC Law Section 417)
+- **California:** Required by law (Cal. Corp. Code Section 17701.10)
+- **Maine:** Required by law
+- **Missouri:** Required by law
+- **Delaware:** Not required but strongly recommended due to Delaware's flexible default rules
+
+## Step 6: Obtain an EIN
+
+After forming your LLC, you should apply for an Employer Identification Number (EIN) from the IRS. An EIN is required if your LLC has employees or multiple members, and it is needed to open a business bank account.
+
+You can apply for an EIN online at IRS.gov at no cost. The online application is available Monday through Friday, 7:00 a.m. to 10:00 p.m. Eastern Time.
+
+## Step 7: Register for State and Local Taxes
+
+Depending on your state and business activities, you may need to register for:
+
+- **State income tax:** Most states require businesses to file state income tax returns. Texas, Florida, Nevada, Wyoming, and several others do not have a state income tax.
+- **Sales tax:** If you sell taxable goods or services, you must register for a sales tax permit with your state's tax authority.
+- **Employment taxes:** If you have employees, you must register for state unemployment insurance tax and state income tax withholding.
+
+## Step 8: Obtain Business Licenses and Permits
+
+Most businesses need some form of license or permit to operate legally. Requirements vary by state, county, and city. Common licenses include:
+
+- General business license (city or county level)
+- Professional or occupational license (for regulated professions)
+- Health department permits (for food service businesses)
+- Zoning permits
+- Home occupation permits (if operating from a residential address)
+
+The SBA recommends checking with your state, county, and city governments to determine which licenses and permits apply to your specific business.
+
+## Ongoing Compliance Requirements
+
+After forming your LLC, you must maintain compliance with state requirements to keep your LLC in good standing:
+
+- File annual or biennial reports with the state (requirements vary by state)
+- Pay any required franchise taxes or annual fees
+- Maintain a registered agent
+- Keep your LLC information current with the state (update address, members, etc.)
+- Maintain separation between personal and business finances
+- Keep records of all LLC meetings and major decisions

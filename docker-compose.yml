@@ -1,0 +1,45 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: .env
+        required: false
+      - path: .env.example
+        required: false
+    environment:
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+    volumes:
+      - ./backend/app/data/demo_docs:/app/app/data/demo_docs
+      - hf_cache:/root/.cache/huggingface
+    depends_on:
+      chromadb:
+        condition: service_healthy
+
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8100:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  chroma_data:
+  hf_cache:
