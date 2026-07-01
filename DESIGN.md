@@ -1,4 +1,4 @@
-# DocMind — Enterprise RAG Knowledge Base
+# AskDocs — Enterprise RAG Knowledge Base
 
 ## Design Specification
 
@@ -11,7 +11,7 @@
 
 ## 1. System Overview
 
-DocMind is a self-contained, domain-agnostic RAG knowledge base that lets users upload documents, ask natural language questions, and receive cited answers with confidence scores. It uses advanced retrieval (hybrid search + cross-encoder re-ranking) to differentiate from basic RAG demos.
+AskDocs is a self-contained, domain-agnostic RAG knowledge base that lets users upload documents, ask natural language questions, and receive cited answers with confidence scores. It uses advanced retrieval (hybrid search + cross-encoder re-ranking) to differentiate from basic RAG demos.
 
 ### What Makes This a Job-Winning Demo
 
@@ -328,7 +328,7 @@ File Upload
 │ ChromaDB Store   │
 │                  │
 │ Collection:      │
-│ "docmind_chunks" │
+│ "askdocs_chunks" │
 │                  │
 │ Store: embedding │
 │ + text + metadata│
@@ -721,7 +721,7 @@ All content is US government public domain — no copyright issues. Files will b
 
 | # | Ticket | What exactly to do | Depends on | Est. |
 |---|--------|--------------------|------------|------|
-| 0.1 | **Create GitHub repo** | Create `docmind-rag` repo on GitHub. Add `.gitignore` (Python + Node). Add MIT license. Clone locally. | — | 5 min |
+| 0.1 | **Create GitHub repo** | Create `askdocs-rag` repo on GitHub. Add `.gitignore` (Python + Node). Add MIT license. Clone locally. | — | 5 min |
 | 0.2 | **Root project structure** | Create folder layout: `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, `README.md` (placeholder) | 0.1 | 5 min |
 | 0.3 | **Docker Compose file** | Write `docker-compose.yml` with 3 services (backend, frontend, chromadb). Map ports 3000, 8000, 8100. Add `chroma_data` volume. | 0.2 | 10 min |
 | 0.4 | **Environment config** | Create `.env.example` with all vars (OPENAI_API_KEY, CHROMA_HOST, LLM_PROVIDER, etc). Create `.env` locally with real keys. Add `.env` to `.gitignore`. | 0.2 | 5 min |
@@ -755,7 +755,7 @@ All content is US government public domain — no copyright issues. Files will b
 | 2.1 | **Text extractor service** | Create `backend/app/services/text_extractor.py`. Three functions: `extract_pdf(file_bytes) → list[{text, page_num}]` using PyPDF2, `extract_docx(file_bytes) → list[{text, page_num}]` using python-docx, `extract_txt(file_bytes) → list[{text, page_num}]`. Auto-detect by extension. Return list of `(text, page_number)` tuples. | 1.1 | 20 min |
 | 2.2 | **Chunker service** | Create `backend/app/services/chunker.py`. Input: list of `(text, page_number)`. Step 1: Split by double-newlines and markdown headings (`## ...`). Step 2: If any chunk > `CHUNK_SIZE` tokens, recursively split at sentence boundaries (`. `, `? `, `! `). Add `CHUNK_OVERLAP` tokens overlap between consecutive chunks. Output: list of `{text, page_number, chunk_index, token_count}`. | 1.2 | 25 min |
 | 2.3 | **Embedder service** | Create `backend/app/services/embedder.py`. Load `all-MiniLM-L6-v2` once on startup (singleton). Function: `embed_texts(texts: list[str]) → list[list[float]]`. Batch processing. Also: `embed_query(query: str) → list[float]`. | 1.1 | 15 min |
-| 2.4 | **ChromaDB client** | Create `backend/app/services/chroma_client.py`. Connect to ChromaDB using `CHROMA_HOST:CHROMA_PORT`. Get or create collection `docmind_chunks`. Functions: `add_chunks(doc_id, chunks, embeddings)`, `delete_by_doc_id(doc_id)`, `get_all_chunks()`, `get_chunks_by_doc_id(doc_id)`, `vector_search(embedding, top_k) → results`. Store metadata: `doc_id`, `doc_name`, `page_number`, `chunk_index`. | 1.2 | 20 min |
+| 2.4 | **ChromaDB client** | Create `backend/app/services/chroma_client.py`. Connect to ChromaDB using `CHROMA_HOST:CHROMA_PORT`. Get or create collection `askdocs_chunks`. Functions: `add_chunks(doc_id, chunks, embeddings)`, `delete_by_doc_id(doc_id)`, `get_all_chunks()`, `get_chunks_by_doc_id(doc_id)`, `vector_search(embedding, top_k) → results`. Store metadata: `doc_id`, `doc_name`, `page_number`, `chunk_index`. | 1.2 | 20 min |
 | 2.5 | **Ingestion pipeline** | Create `backend/app/services/ingestion.py`. Orchestrator function: `ingest_document(filename, file_bytes) → DocumentResponse`. Calls: text_extractor → chunker → embedder → chroma_client.add_chunks. Generates UUID for doc_id. Returns doc metadata with chunk count. | 2.1-2.4 | 15 min |
 | 2.6 | **Documents router** | Create `backend/app/routers/documents.py`. Endpoints: `POST /api/documents/upload` (accepts multipart files, calls ingestion pipeline, returns doc list), `GET /api/documents` (list all unique doc_ids from ChromaDB with metadata), `GET /api/documents/{doc_id}` (single doc detail), `GET /api/documents/{doc_id}/chunks?page=1&per_page=20` (paginated chunks), `DELETE /api/documents/{doc_id}` (delete from ChromaDB). Register router in main.py. | 2.5, 1.5 | 25 min |
 | 2.7 | **Test ingestion end-to-end** | Upload a sample .txt file via Swagger `/docs`. Verify: chunks appear in ChromaDB, list endpoint returns doc, chunks endpoint returns chunks with correct page numbers. | 2.6 | 10 min |
@@ -791,7 +791,7 @@ All content is US government public domain — no copyright issues. Files will b
 | 4.1 | **Next.js scaffolding** | `npx create-next-app@latest frontend` with App Router, TypeScript, Tailwind. Install shadcn/ui (`npx shadcn-ui@latest init`). Add components: Button, Card, Table, Dialog, Badge, Input, ScrollArea. | 0.2 | 15 min |
 | 4.2 | **Frontend Dockerfile** | Node 20 alpine. Copy package.json, install. Copy app. Build. CMD `next start`. | 4.1 | 10 min |
 | 4.3 | **API client** | Create `frontend/lib/api.ts`. Base URL from `NEXT_PUBLIC_API_URL`. Functions: `fetchDocuments()`, `uploadDocuments(files)`, `deleteDocument(id)`, `fetchChunks(docId, page)`, `fetchStats()`, `chatStream(question, topK, useReranking) → ReadableStream`. All typed with interfaces matching backend schemas. | 4.1 | 15 min |
-| 4.4 | **Root layout + Sidebar** | Create `app/layout.tsx` with dark/neutral theme. Sidebar with 3 nav links: Dashboard (home icon), Documents (folder icon), Chat (message icon). Active link highlight. Logo "DocMind" at top of sidebar. Use Lucide icons. | 4.1 | 20 min |
+| 4.4 | **Root layout + Sidebar** | Create `app/layout.tsx` with dark/neutral theme. Sidebar with 3 nav links: Dashboard (home icon), Documents (folder icon), Chat (message icon). Active link highlight. Logo "AskDocs" at top of sidebar. Use Lucide icons. | 4.1 | 20 min |
 | 4.5 | **StatsCards component** | Create `components/dashboard/StatsCards.tsx`. 4 cards in a row: Documents (file icon), Chunks (layers icon), Queries (search icon), Avg Confidence (shield icon). Each card: big number + label + subtle icon. Color-coded. | 4.1 | 15 min |
 | 4.6 | **RecentQueries component** | Create `components/dashboard/RecentQueries.tsx`. List of last 10 queries. Each row: question text (truncated), confidence badge (green/yellow/red), timestamp. Empty state: "No queries yet — try the chat." | 4.1 | 15 min |
 | 4.7 | **DocTypeChart component** | Create `components/dashboard/DocTypeChart.tsx`. Simple bar or pie chart showing document count by file type (PDF, DOCX, TXT). Use a lightweight chart lib (recharts) or just colored bars with CSS. | 4.1 | 15 min |
@@ -883,7 +883,7 @@ Critical path: Phase 2 (ingestion) blocks Phase 3 (retrieval) blocks Phase 5 (ch
 
 ## 8. Demo Script (2-min Loom Video)
 
-1. **0:00-0:15** — "This is DocMind, an enterprise RAG knowledge base I built." Show dashboard with pre-loaded docs.
+1. **0:00-0:15** — "This is AskDocs, an enterprise RAG knowledge base I built." Show dashboard with pre-loaded docs.
 2. **0:15-0:30** — Upload a new document. Show chunk count appearing. Switch to documents page to show it in the list.
 3. **0:30-1:00** — Switch to chat. Ask: "What documents are needed to form an LLC in Texas?" Show the answer streaming in with citations. Point out the source cards appearing on the right.
 4. **1:00-1:20** — Ask a harder question that spans multiple documents. Show how sources from different files appear.

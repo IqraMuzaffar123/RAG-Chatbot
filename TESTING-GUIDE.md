@@ -1,4 +1,4 @@
-# DocMind — Testing Guide
+# AskDocs — Testing Guide
 
 Step-by-step manual testing guide with edge cases. Run through everything before recording the demo video.
 
@@ -9,7 +9,7 @@ Step-by-step manual testing guide with edge cases. Run through everything before
 1. Copy `.env.example` to `.env` and add your `OPENAI_API_KEY`
 2. Docker and Docker Compose installed
 3. Run: `docker-compose up --build`
-4. Wait for logs to show: `DocMind backend startup complete`
+4. Wait for logs to show: `AskDocs backend startup complete`
 5. Open `http://localhost:3000` in Chrome (1920x1080, zoom 100%)
 
 ---
@@ -30,7 +30,7 @@ Step-by-step manual testing guide with edge cases. Run through everything before
 
 | # | Test | Steps | Expected |
 |---|------|-------|----------|
-| 6 | Health endpoint | `curl http://localhost:8000/health` | `{"status": "healthy", "service": "docmind-backend", "version": "0.1.0"}` |
+| 6 | Health endpoint | `curl http://localhost:8000/health` | `{"status": "healthy", "service": "askdocs-backend", "version": "0.1.0"}` |
 | 7 | Swagger docs | Open `http://localhost:8000/docs` | Interactive API docs render correctly |
 
 ---

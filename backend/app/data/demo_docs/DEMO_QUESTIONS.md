@@ -1,6 +1,6 @@
-# Demo Questions for DocMind RAG Knowledge Base
+# Demo Questions for AskDocs RAG Knowledge Base
 
-Use these prepared questions to demonstrate DocMind's retrieval and generation capabilities.
+Use these prepared questions to demonstrate AskDocs's retrieval and generation capabilities.
 
 ---
 

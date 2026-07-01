@@ -7,7 +7,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    """DocMind application settings.
+    """AskDocs application settings.
 
     All values are loaded from environment variables (or .env file).
     See .env.example for the full list.

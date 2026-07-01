@@ -22,7 +22,7 @@ export function Sidebar() {
           <Brain className="h-4.5 w-4.5 text-white" />
         </div>
         <span className="text-lg font-semibold tracking-tight text-white">
-          DocMind
+          AskDocs
         </span>
       </div>
 

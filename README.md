@@ -1,4 +1,4 @@
-# DocMind
+# AskDocs
 
 **Enterprise-grade RAG knowledge base with hybrid search, cross-encoder re-ranking, and citation-forced answers.**
 
@@ -78,8 +78,8 @@ flowchart TB
 ## Quick Start
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/docmind-rag.git
-cd docmind-rag
+git clone https://github.com/YOUR_USERNAME/askdocs-rag.git
+cd askdocs-rag
 
 cp .env.example .env
 # Add your OPENAI_API_KEY to .env
@@ -126,7 +126,7 @@ Full interactive docs available at [http://localhost:8000/docs](http://localhost
 ## Project Structure
 
 ```
-docmind-rag/
+askdocs-rag/
 ├── docker-compose.yml
 ├── .env.example
 │

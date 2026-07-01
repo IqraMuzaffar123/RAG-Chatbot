@@ -1,4 +1,4 @@
-"""DocMind — Enterprise RAG Knowledge Base API."""
+"""AskDocs — Enterprise RAG Knowledge Base API."""
 
 import logging
 import time
@@ -41,7 +41,7 @@ async def lifespan(app: FastAPI):
     Shutdown: cleanup resources.
     """
     # --- Startup ---
-    logger.info("Starting DocMind backend ...")
+    logger.info("Starting AskDocs backend ...")
 
     # 0. Wait for ChromaDB to be reachable
     _wait_for_chromadb()
@@ -93,16 +93,16 @@ async def lifespan(app: FastAPI):
         else:
             logger.warning("Demo docs directory not found at %s", demo_dir)
 
-    logger.info("DocMind backend startup complete.")
+    logger.info("AskDocs backend startup complete.")
     yield
     # --- Shutdown ---
-    logger.info("DocMind backend shutting down.")
+    logger.info("AskDocs backend shutting down.")
 
 
 settings = get_settings()
 
 app = FastAPI(
-    title="DocMind",
+    title="AskDocs",
     description="Enterprise RAG Knowledge Base — Hybrid search with cross-encoder re-ranking",
     version="0.1.0",
     lifespan=lifespan,
@@ -130,6 +130,6 @@ async def health_check():
     """Health check endpoint."""
     return {
         "status": "healthy",
-        "service": "docmind-backend",
+        "service": "askdocs-backend",
         "version": "0.1.0",
     }

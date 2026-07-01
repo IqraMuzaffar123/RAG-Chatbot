@@ -1,4 +1,4 @@
-# DocMind — Technical Highlights & Talking Points
+# AskDocs — Technical Highlights & Talking Points
 
 Use this document when writing Upwork proposals, Loom video scripts, or client conversations. Every point below is something implemented in this project that differentiates it from basic RAG demos.
 
@@ -6,7 +6,7 @@ Use this document when writing Upwork proposals, Loom video scripts, or client c
 
 ## 1. Hybrid Search (BM25 + Vector + RRF Fusion)
 
-**What it is:** Instead of searching only by semantic similarity (what most RAG demos do), DocMind runs TWO searches in parallel — vector (semantic meaning) and BM25 (exact keyword matching) — then merges results using Reciprocal Rank Fusion.
+**What it is:** Instead of searching only by semantic similarity (what most RAG demos do), AskDocs runs TWO searches in parallel — vector (semantic meaning) and BM25 (exact keyword matching) — then merges results using Reciprocal Rank Fusion.
 
 **Why it matters:**
 - Pure vector search misses exact terms (e.g., "Form SS-4" or "EIN" might not match semantically)
@@ -15,7 +15,7 @@ Use this document when writing Upwork proposals, Loom video scripts, or client c
 
 **Technical detail:** RRF formula: `score = Σ 1/(k + rank)` where k=60. We pull top 20 from each search, merge, deduplicate, and sort by combined RRF score.
 
-**Talking point:** "Unlike basic RAG that only does vector similarity, DocMind uses hybrid retrieval — combining semantic and keyword search with Reciprocal Rank Fusion. This means it catches both meaning AND exact terms, which is critical for compliance documents with specific form numbers and legal terminology."
+**Talking point:** "Unlike basic RAG that only does vector similarity, AskDocs uses hybrid retrieval — combining semantic and keyword search with Reciprocal Rank Fusion. This means it catches both meaning AND exact terms, which is critical for compliance documents with specific form numbers and legal terminology."
 
 ---
 
@@ -30,7 +30,7 @@ Use this document when writing Upwork proposals, Loom video scripts, or client c
 
 **Technical detail:** The cross-encoder outputs a relevance score 0-1 for each (query, chunk) pair. We take the top 5 highest-scoring chunks and send only those to the LLM. This dramatically reduces noise in the context window.
 
-**Talking point:** "DocMind uses a two-stage retrieval pipeline. First, hybrid search pulls 20 candidates fast. Then a cross-encoder re-ranker scores each one against the actual query for precision. This is the same architecture used by enterprise search companies — it's what separates production RAG from tutorial RAG."
+**Talking point:** "AskDocs uses a two-stage retrieval pipeline. First, hybrid search pulls 20 candidates fast. Then a cross-encoder re-ranker scores each one against the actual query for precision. This is the same architecture used by enterprise search companies — it's what separates production RAG from tutorial RAG."
 
 ---
 
@@ -41,7 +41,7 @@ Use this document when writing Upwork proposals, Loom video scripts, or client c
 **Why it matters:**
 - The #1 concern in every enterprise RAG job posting is hallucination
 - Most RAG demos don't enforce citation — the LLM can make things up
-- DocMind's guardrail means every claim is traceable to a source document
+- AskDocs's guardrail means every claim is traceable to a source document
 
 **Technical detail:** System prompt: "Answer ONLY from the provided sources. Cite each claim as [Source: filename, p.X]. If the information is not found in the sources, respond: I don't have enough information in the uploaded documents to answer this."
 
@@ -58,7 +58,7 @@ Use this document when writing Upwork proposals, Loom video scripts, or client c
 - Low confidence = the system is warning you the sources might not be great
 - This enables human-in-the-loop workflows: auto-approve high confidence, flag low confidence for review
 
-**Talking point:** "DocMind includes confidence scoring based on retrieval quality — not just LLM uncertainty. A 92% confidence means the retrieved sources were highly relevant. A 45% means the system found something but isn't sure — flag it for human review."
+**Talking point:** "AskDocs includes confidence scoring based on retrieval quality — not just LLM uncertainty. A 92% confidence means the retrieved sources were highly relevant. A 45% means the system found something but isn't sure — flag it for human review."
 
 ---
 
@@ -86,7 +86,7 @@ Use this document when writing Upwork proposals, Loom video scripts, or client c
 
 **Technical detail:** Chunk size ~500 tokens with 50-token overlap. Split hierarchy: headings → paragraphs → sentences. Token count tracked per chunk.
 
-**Talking point:** "DocMind uses semantic chunking — splitting by document structure (headings, paragraphs) rather than arbitrary character counts. This preserves context within each chunk, which directly improves retrieval accuracy."
+**Talking point:** "AskDocs uses semantic chunking — splitting by document structure (headings, paragraphs) rather than arbitrary character counts. This preserves context within each chunk, which directly improves retrieval accuracy."
 
 ---
 
@@ -114,7 +114,7 @@ Use this document when writing Upwork proposals, Loom video scripts, or client c
 - Enterprise clients expect admin visibility
 - Demonstrates full-stack capability
 
-**Talking point:** "DocMind includes an admin dashboard — document inventory, chunk statistics, query history with confidence scores, and document type analytics. Everything you need to manage a knowledge base at scale."
+**Talking point:** "AskDocs includes an admin dashboard — document inventory, chunk statistics, query history with confidence scores, and document type analytics. Everything you need to manage a knowledge base at scale."
 
 ---
 
@@ -160,7 +160,7 @@ Use this document when writing Upwork proposals, Loom video scripts, or client c
 
 **Why it matters:** Clients often have provider preferences or existing API agreements.
 
-**Talking point:** "DocMind is provider-agnostic — switch between OpenAI and Claude with one config change. No code modifications needed."
+**Talking point:** "AskDocs is provider-agnostic — switch between OpenAI and Claude with one config change. No code modifications needed."
 
 ---
 

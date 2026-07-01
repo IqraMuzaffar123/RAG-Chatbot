@@ -1,4 +1,4 @@
-"""ChromaDB client for the ``docmind_chunks`` collection.
+"""ChromaDB client for the ``askdocs_chunks`` collection.
 
 Connects to a running ChromaDB instance using ``CHROMA_HOST`` / ``CHROMA_PORT``
 from config.  All chunk storage, retrieval, and deletion goes through this
@@ -15,7 +15,7 @@ from chromadb.api.models.Collection import Collection
 
 from app.config import get_settings
 
-_COLLECTION_NAME = "docmind_chunks"
+_COLLECTION_NAME = "askdocs_chunks"
 
 _client: chromadb.HttpClient | None = None
 _lock = threading.Lock()
@@ -36,7 +36,7 @@ def _get_client() -> chromadb.HttpClient:
 
 
 def get_collection() -> Collection:
-    """Get (or create) the ``docmind_chunks`` collection."""
+    """Get (or create) the ``askdocs_chunks`` collection."""
     client = _get_client()
     return client.get_or_create_collection(
         name=_COLLECTION_NAME,

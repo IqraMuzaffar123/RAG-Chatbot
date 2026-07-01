@@ -73,7 +73,7 @@ export function ChatMessages({ messages }: ChatMessagesProps) {
           Ask a question about your documents
         </p>
         <p className="mt-1 text-xs text-slate-500">
-          DocMind will search your knowledge base and provide cited answers
+          AskDocs will search your knowledge base and provide cited answers
         </p>
       </div>
     );

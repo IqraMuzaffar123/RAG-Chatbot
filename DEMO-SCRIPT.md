@@ -1,4 +1,4 @@
-# DocMind — Demo Video Script & Testing Checklist
+# AskDocs — Demo Video Script & Testing Checklist
 
 ## Part 1: What to Test Before Recording
 
@@ -65,7 +65,7 @@ Run through every item. Fix anything broken before hitting record.
 **Show:** Dashboard page with loaded demo data
 
 **Say:**
-> "This is DocMind — an enterprise RAG knowledge base I built. It lets you upload any documents and ask questions with cited, verifiable answers."
+> "This is AskDocs — an enterprise RAG knowledge base I built. It lets you upload any documents and ask questions with cited, verifiable answers."
 >
 > "The dashboard shows we have 10 compliance documents loaded with over 300 chunks, and it tracks query volume and average confidence scores."
 
@@ -133,7 +133,7 @@ Run through every item. Fix anything broken before hitting record.
 **Show:** Dashboard page (navigate back to show updated query stats)
 
 **Say:**
-> "Under the hood, DocMind uses a production-grade retrieval pipeline:"
+> "Under the hood, AskDocs uses a production-grade retrieval pipeline:"
 >
 > "Hybrid search combining semantic vectors and BM25 keyword matching..."
 >
@@ -180,9 +180,9 @@ After they watch the demo, clients will ask:
 
 ## Part 5: Upwork Proposal Template (for RAG Jobs)
 
-When applying to RAG-related jobs, reference DocMind:
+When applying to RAG-related jobs, reference AskDocs:
 
-> I've built DocMind, an enterprise-grade RAG knowledge base with:
+> I've built AskDocs, an enterprise-grade RAG knowledge base with:
 > - Hybrid search (BM25 + vector + Reciprocal Rank Fusion)
 > - Cross-encoder re-ranking for retrieval precision
 > - Citation-forced answers with hallucination guardrails

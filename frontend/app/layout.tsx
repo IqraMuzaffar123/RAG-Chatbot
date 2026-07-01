@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DocMind - Enterprise RAG Knowledge Base",
+  title: "AskDocs - Enterprise RAG Knowledge Base",
   description:
     "AI-powered document intelligence with hybrid search, cross-encoder re-ranking, and cited answers.",
 };
