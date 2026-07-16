@@ -138,10 +138,16 @@ export async function fetchChunks(
   return res.json();
 }
 
+export interface ConversationMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
 export async function chatStream(
   question: string,
   topK: number = 5,
-  useReranking: boolean = true
+  useReranking: boolean = true,
+  conversationHistory: ConversationMessage[] = []
 ): Promise<Response> {
   const res = await fetch(`${API_BASE}/api/chat`, {
     method: "POST",
@@ -150,6 +156,7 @@ export async function chatStream(
       question,
       top_k: topK,
       use_reranking: useReranking,
+      conversation_history: conversationHistory,
     }),
   });
   if (!res.ok) throw new Error(await parseError(res, `Chat failed: ${res.statusText}`));

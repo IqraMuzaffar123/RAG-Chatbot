@@ -1,68 +1,107 @@
 "use client";
 
-import { FileText, Layers, Search, ShieldCheck } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { FileText, Layers, MessageSquare, TrendingUp } from "lucide-react";
 import type { StatsResponse } from "@/lib/api";
 
 interface StatsCardsProps {
   stats: StatsResponse | null;
+  loading?: boolean;
 }
 
 const cards = [
   {
     key: "total_documents" as const,
     label: "Documents",
+    desc: "Uploaded files",
     icon: FileText,
-    color: "text-blue-400",
-    bgColor: "bg-blue-400/10",
+    variant: "emerald" as const,
+    accentColor: "#10b981",
     format: (v: number) => v.toString(),
   },
   {
     key: "total_chunks" as const,
-    label: "Chunks",
+    label: "Chunks Indexed",
+    desc: "Searchable segments",
     icon: Layers,
-    color: "text-purple-400",
-    bgColor: "bg-purple-400/10",
+    variant: "cyan" as const,
+    accentColor: "#06b6d4",
     format: (v: number) => v.toLocaleString(),
   },
   {
     key: "total_queries" as const,
     label: "Queries",
-    icon: Search,
-    color: "text-amber-400",
-    bgColor: "bg-amber-400/10",
+    desc: "Questions asked",
+    icon: MessageSquare,
+    variant: "violet" as const,
+    accentColor: "#8b5cf6",
     format: (v: number) => v.toString(),
   },
   {
     key: "avg_confidence" as const,
     label: "Avg Confidence",
-    icon: ShieldCheck,
-    color: "text-emerald-400",
-    bgColor: "bg-emerald-400/10",
+    desc: "Answer accuracy",
+    icon: TrendingUp,
+    variant: "amber" as const,
+    accentColor: "#f59e0b",
     format: (v: number) => (v * 100).toFixed(0) + "%",
   },
 ];
 
-export function StatsCards({ stats }: StatsCardsProps) {
+export function StatsCards({ stats, loading }: StatsCardsProps) {
+  if (loading) {
+    return (
+      <div className="grid grid-cols-4 gap-4 mb-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div
+            key={i}
+            className="gradient-card animate-in"
+            style={{
+              padding: "22px",
+              minHeight: 140,
+              animationDelay: `${i * 0.05}s`,
+            }}
+          >
+            <div className="skeleton" style={{ width: 80, height: 14, marginBottom: 16 }} />
+            <div className="skeleton" style={{ width: 60, height: 40, marginBottom: 12 }} />
+            <div className="skeleton" style={{ width: 100, height: 12 }} />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {cards.map(({ key, label, icon: Icon, color, bgColor, format }) => (
-        <Card
+    <div className="grid grid-cols-4 gap-4 mb-4">
+      {cards.map(({ key, label, desc, icon: Icon, variant, accentColor, format }, i) => (
+        <div
           key={key}
-          className="border-0 bg-slate-800/60 ring-white/5"
+          className={`gradient-card gradient-card-${variant} animate-in delay-${i + 1}`}
+          style={{ padding: "22px 22px 18px", minHeight: 140 }}
         >
-          <CardContent className="flex items-center gap-4 pt-1">
-            <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${bgColor}`}>
-              <Icon className={`h-6 w-6 ${color}`} />
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-white">
-                {stats ? format(stats[key]) : "--"}
-              </p>
-              <p className="text-xs text-slate-400">{label}</p>
-            </div>
-          </CardContent>
-        </Card>
+          <div className="flex items-start justify-between">
+            <span className="stat-label" style={{ color: accentColor }}>
+              {label}
+            </span>
+            <span
+              className="flex items-center justify-center shrink-0"
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: 10,
+                background: `rgba(255,255,255,0.04)`,
+                border: `1px solid rgba(255,255,255,0.06)`,
+              }}
+            >
+              <Icon className="w-5 h-5" style={{ color: accentColor }} />
+            </span>
+          </div>
+
+          <div className="stat-number">
+            {stats ? format(stats[key]) : "--"}
+          </div>
+
+          <div className="mt-2 text-[13px] text-slate-500">{desc}</div>
+        </div>
       ))}
     </div>
   );

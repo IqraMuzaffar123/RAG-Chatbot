@@ -1,7 +1,5 @@
 "use client";
 
-import { ShieldCheck } from "lucide-react";
-
 interface ConfidenceBadgeProps {
   confidence: number;
 }
@@ -9,22 +7,63 @@ interface ConfidenceBadgeProps {
 export function ConfidenceBadge({ confidence }: ConfidenceBadgeProps) {
   const pct = Math.round(confidence * 100);
 
-  let colorClasses: string;
+  let color: string;
+  let label: string;
   if (pct >= 80) {
-    colorClasses = "bg-emerald-500/15 text-emerald-400 border-emerald-500/20";
+    color = "#10b981";
+    label = "High";
   } else if (pct >= 50) {
-    colorClasses = "bg-yellow-500/15 text-yellow-400 border-yellow-500/20";
+    color = "#f59e0b";
+    label = "Medium";
   } else {
-    colorClasses = "bg-red-500/15 text-red-400 border-red-500/20";
+    color = "#ef4444";
+    label = "Low";
   }
+
+  // SVG ring
+  const size = 28;
+  const strokeWidth = 3;
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (pct / 100) * circumference;
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${colorClasses}`}
-      title="Confidence score based on cross-encoder relevance scores"
+      className="inline-flex items-center gap-1.5"
+      title={`${label} confidence: ${pct}%`}
     >
-      <ShieldCheck className="h-3 w-3" />
-      {pct}% confidence
+      <svg
+        width={size}
+        height={size}
+        style={{ transform: "rotate(-90deg)" }}
+      >
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke="rgba(255,255,255,0.06)"
+          strokeWidth={strokeWidth}
+        />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke={color}
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          strokeLinecap="round"
+          style={{ transition: "stroke-dashoffset 0.5s ease" }}
+        />
+      </svg>
+      <span
+        className="font-mono text-[11px] font-bold"
+        style={{ color }}
+      >
+        {pct}%
+      </span>
     </span>
   );
 }

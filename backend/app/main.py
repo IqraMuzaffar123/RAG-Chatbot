@@ -93,6 +93,12 @@ async def lifespan(app: FastAPI):
         else:
             logger.warning("Demo docs directory not found at %s", demo_dir)
 
+    # 5. Initialize stats database (SQLite)
+    logger.info("Initializing stats database ...")
+    from app.services.stats_db import init_db
+    await init_db()
+    logger.info("Stats database ready.")
+
     logger.info("AskDocs backend startup complete.")
     yield
     # --- Shutdown ---
@@ -123,6 +129,25 @@ from app.routers import documents, chat, stats  # noqa: E402
 app.include_router(documents.router)
 app.include_router(chat.router)
 app.include_router(stats.router)
+
+
+import uuid
+from fastapi import Request
+from fastapi.responses import JSONResponse
+
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    """Catch unhandled errors and return structured JSON."""
+    request_id = str(uuid.uuid4())[:8]
+    logger.exception("Unhandled error [%s]: %s", request_id, exc)
+    return JSONResponse(
+        status_code=500,
+        content={
+            "detail": "Internal server error",
+            "request_id": request_id,
+        },
+    )
 
 
 @app.get("/health", tags=["system"])

@@ -24,10 +24,17 @@ router = APIRouter(prefix="/api/chat", tags=["chat"])
 
 async def _event_generator(request: ChatRequest) -> AsyncGenerator[dict, None]:
     """Yield SSE-formatted events from the retrieval pipeline."""
+    # Convert conversation history to plain dicts
+    history = [
+        {"role": msg.role, "content": msg.content}
+        for msg in (request.conversation_history or [])
+    ]
+
     async for event in retrieve_and_answer(
         question=request.question,
         top_k=request.top_k,
         use_reranking=request.use_reranking,
+        conversation_history=history if history else None,
     ):
         event_type = event["type"]
 

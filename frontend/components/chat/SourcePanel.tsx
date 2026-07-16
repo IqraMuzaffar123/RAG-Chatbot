@@ -1,8 +1,6 @@
 "use client";
 
 import { BookOpen } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { SourceCard } from "./SourceCard";
 import { ConfidenceBadge } from "./ConfidenceBadge";
 import type { SourceInfo } from "@/lib/api";
@@ -14,43 +12,60 @@ interface SourcePanelProps {
 
 export function SourcePanel({ sources, confidence }: SourcePanelProps) {
   return (
-    <div className="flex h-full flex-col border-l border-slate-700 bg-slate-900">
+    <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-slate-700 px-4 py-3">
-        <div className="flex items-center gap-2">
-          <BookOpen className="h-4 w-4 text-slate-400" />
-          <span className="text-sm font-medium text-slate-200">Sources</span>
+      <div
+        className="flex items-center justify-between shrink-0"
+        style={{
+          padding: "16px 20px",
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
+        }}
+      >
+        <div className="flex items-center gap-[9px]">
+          <BookOpen className="w-4 h-4 text-teal-300" />
+          <span className="text-[14px] font-semibold text-slate-50">
+            Sources
+          </span>
           {sources.length > 0 && (
-            <Badge variant="secondary" className="bg-slate-700 text-slate-300">
+            <span
+              className="font-mono text-[11px] text-slate-500"
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                padding: "2px 8px",
+                borderRadius: 99,
+              }}
+            >
               {sources.length}
-            </Badge>
+            </span>
           )}
         </div>
         {confidence !== null && <ConfidenceBadge confidence={confidence} />}
       </div>
 
       {/* Content */}
-      <ScrollArea className="flex-1">
-        <div className="p-4">
-          {sources.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-16 text-center">
-              <BookOpen className="mb-3 h-8 w-8 text-slate-600" />
-              <p className="text-sm text-slate-400">
-                Ask a question to see sources
-              </p>
-              <p className="mt-1 text-xs text-slate-500">
-                Relevant document chunks will appear here
-              </p>
+      <div className="flex-1 overflow-y-auto" style={{ padding: 16 }}>
+        {sources.length === 0 ? (
+          <div className="flex flex-col items-center text-center" style={{ padding: "70px 24px", color: "#475569" }}>
+            <BookOpen className="w-[34px] h-[34px]" />
+            <div className="text-[13.5px] text-slate-400 mt-3.5 font-medium">
+              Sources will appear here
             </div>
-          ) : (
-            <div className="space-y-3">
-              {sources.map((source, i) => (
-                <SourceCard key={source.chunk_id} source={source} index={i} />
-              ))}
+            <div
+              className="text-[12px] text-slate-500 mt-[5px] leading-[1.5]"
+              style={{ maxWidth: 220 }}
+            >
+              Ask a question and the most relevant document chunks — with
+              relevance scores — show up here.
             </div>
-          )}
-        </div>
-      </ScrollArea>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-3">
+            {sources.map((source, i) => (
+              <SourceCard key={source.chunk_id} source={source} index={i} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

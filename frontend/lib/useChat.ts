@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { chatStream, type SourceInfo } from "@/lib/api";
+import { chatStream, type SourceInfo, type ConversationMessage } from "@/lib/api";
 import type { ChatMessage } from "@/components/chat/ChatMessages";
 
 interface UseChatReturn {
@@ -10,6 +10,9 @@ interface UseChatReturn {
   confidence: number | null;
   isLoading: boolean;
   sendMessage: (question: string) => void;
+  resetChat: () => void;
+  setMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
+  setSources: React.Dispatch<React.SetStateAction<SourceInfo[]>>;
 }
 
 export function useChat(): UseChatReturn {
@@ -19,6 +22,16 @@ export function useChat(): UseChatReturn {
   const [isLoading, setIsLoading] = useState(false);
 
   const sendMessage = useCallback(async (question: string) => {
+    // Build conversation history from last 5 exchanges (10 messages)
+    const history: ConversationMessage[] = [];
+    const prevMessages = messages.slice(); // snapshot current messages
+    const recentPairs = prevMessages.slice(-10);
+    for (const msg of recentPairs) {
+      if (msg.content && (msg.role === "user" || msg.role === "assistant")) {
+        history.push({ role: msg.role, content: msg.content });
+      }
+    }
+
     // Add user message
     setMessages((prev) => [...prev, { role: "user", content: question }]);
     setIsLoading(true);
@@ -29,7 +42,7 @@ export function useChat(): UseChatReturn {
     setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
 
     try {
-      const response = await chatStream(question);
+      const response = await chatStream(question, 5, true, history);
 
       if (!response.body) {
         throw new Error("No response body");
@@ -46,18 +59,13 @@ export function useChat(): UseChatReturn {
 
         buffer += decoder.decode(value, { stream: true });
 
-        // Process SSE lines — sse-starlette sends named events:
-        //   event: sources\ndata: [...]\n\n
-        //   event: token\ndata: hello\n\n
-        //   event: metadata\ndata: {...}\n\n
         const lines = buffer.split("\n");
-        buffer = lines.pop() || ""; // Keep incomplete line in buffer
+        buffer = lines.pop() || "";
 
         for (const line of lines) {
           const trimmed = line.trim();
 
           if (!trimmed) {
-            // Empty line = end of SSE event block, reset
             currentEvent = "";
             continue;
           }
@@ -69,7 +77,7 @@ export function useChat(): UseChatReturn {
 
           if (!trimmed.startsWith("data: ")) continue;
 
-          const data = trimmed.slice(6); // Remove "data: "
+          const data = trimmed.slice(6);
           if (data === "[DONE]") continue;
 
           if (currentEvent === "sources") {
@@ -80,7 +88,6 @@ export function useChat(): UseChatReturn {
               // ignore malformed sources
             }
           } else if (currentEvent === "token") {
-            // Token data is plain text, not JSON
             setMessages((prev) => {
               const updated = [...prev];
               const last = updated[updated.length - 1];
@@ -135,7 +142,14 @@ export function useChat(): UseChatReturn {
     } finally {
       setIsLoading(false);
     }
+  }, [messages]);
+
+  const resetChat = useCallback(() => {
+    setMessages([]);
+    setSources([]);
+    setConfidence(null);
+    setIsLoading(false);
   }, []);
 
-  return { messages, sources, confidence, isLoading, sendMessage };
+  return { messages, sources, confidence, isLoading, sendMessage, resetChat, setMessages, setSources };
 }

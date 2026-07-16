@@ -89,12 +89,23 @@ class ChunkListResponse(BaseModel):
 # Chat schemas
 # ---------------------------------------------------------------------------
 
+class ConversationMessage(BaseModel):
+    """A single message in the conversation history."""
+
+    role: str = Field(..., description="Message role: 'user' or 'assistant'")
+    content: str = Field(..., description="Message content")
+
+
 class ChatRequest(BaseModel):
     """Request body for the chat/query endpoint."""
 
-    question: str = Field(..., min_length=1, description="User question")
+    question: str = Field(..., min_length=2, max_length=2000, description="User question")
     top_k: int = Field(5, ge=1, le=20, description="Number of chunks to retrieve")
     use_reranking: bool = Field(True, description="Whether to apply cross-encoder re-ranking")
+    conversation_history: list[ConversationMessage] = Field(
+        default_factory=list,
+        description="Previous messages for multi-turn context (max 10)",
+    )
 
 
 class SourceInfo(BaseModel):

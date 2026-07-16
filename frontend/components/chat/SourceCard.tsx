@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronRight, FileText } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { FileText } from "lucide-react";
 import type { SourceInfo } from "@/lib/api";
 
 interface SourceCardProps {
@@ -11,83 +9,148 @@ interface SourceCardProps {
   index: number;
 }
 
-function getScoreColor(score: number): string {
-  if (score >= 0.8) return "bg-emerald-500";
-  if (score >= 0.6) return "bg-emerald-400";
-  if (score >= 0.4) return "bg-yellow-400";
-  if (score >= 0.2) return "bg-orange-400";
-  return "bg-red-400";
+function getTypeFromName(name: string): string {
+  const ext = name.split(".").pop()?.toLowerCase() || "";
+  if (ext === "pdf") return "PDF";
+  if (ext === "docx") return "DOCX";
+  return "TXT";
+}
+
+function getTypeColors(type: string): { bg: string; fg: string } {
+  switch (type) {
+    case "PDF":
+      return { bg: "rgba(239,68,68,0.14)", fg: "#f87171" };
+    case "DOCX":
+      return { bg: "rgba(59,130,246,0.16)", fg: "#60a5fa" };
+    default:
+      return { bg: "rgba(148,163,184,0.14)", fg: "#94a3b8" };
+  }
+}
+
+function getBarColor(score: number): string {
+  if (score >= 0.8) return "#10b981";
+  if (score >= 0.55) return "#f59e0b";
+  return "#ef4444";
 }
 
 export function SourceCard({ source, index }: SourceCardProps) {
   const [expanded, setExpanded] = useState(false);
 
   const scorePercent = Math.round(source.relevance_score * 100);
+  const type = getTypeFromName(source.document_name);
+  const { bg, fg } = getTypeColors(type);
+  const barColor = getBarColor(source.relevance_score);
 
   return (
-    <Card className="border-0 bg-slate-800/80 ring-white/5">
-      <CardContent className="p-3">
-        {/* Header */}
-        <div className="flex items-start justify-between gap-2">
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2">
-              <Badge
-                variant="outline"
-                className="border-slate-600 text-slate-400 shrink-0"
-              >
-                #{index + 1}
-              </Badge>
-              <div className="flex items-center gap-1.5 min-w-0">
-                <FileText className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                <span className="truncate text-sm font-medium text-slate-200">
-                  {source.document_name}
-                </span>
-              </div>
-            </div>
-            <div className="mt-1.5 flex items-center gap-3">
-              <span className="text-xs text-slate-400">
-                Page {source.page_number}
-              </span>
-            </div>
+    <div
+      data-source-doc={source.document_name}
+      data-source-page={source.page_number}
+      onClick={() => setExpanded(!expanded)}
+      className="cursor-pointer transition-all duration-[250ms]"
+      style={{
+        position: "relative",
+        background: "rgba(255,255,255,0.03)",
+        border: "1px solid rgba(255,255,255,0.07)",
+        borderLeft: "3px solid transparent",
+        borderImage: "linear-gradient(180deg, #10b981, #06b6d4) 1",
+        borderImageSlice: "0 0 0 1",
+        borderRadius: 14,
+        padding: "14px 15px",
+        backdropFilter: "blur(14px)",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+        (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.15)";
+        (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+        (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)";
+        (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
+      }}
+    >
+      {/* Header: type icon + name + page */}
+      <div className="flex items-center gap-2.5 mb-[11px]">
+        <span
+          className="flex items-center justify-center shrink-0"
+          style={{
+            width: 30,
+            height: 30,
+            borderRadius: 8,
+            background: bg,
+            color: fg,
+          }}
+        >
+          <FileText className="w-4 h-4" />
+        </span>
+        <div className="flex-1 min-w-0">
+          <div
+            className="font-mono text-[12.5px] font-semibold text-slate-200 truncate"
+            style={{ letterSpacing: "-0.01em" }}
+          >
+            {source.document_name}
           </div>
-        </div>
-
-        {/* Relevance score bar */}
-        <div className="mt-3">
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-xs text-slate-500">Relevance</span>
-            <span className="text-xs font-medium text-slate-300">
-              {scorePercent}%
+          <div className="flex items-center gap-2 mt-1">
+            <span
+              className="font-mono text-[10px] font-semibold text-slate-400"
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                padding: "2px 7px",
+                borderRadius: 99,
+              }}
+            >
+              p.{source.page_number}
+            </span>
+            <span className="font-mono text-[10.5px] text-slate-500">
+              rerank {source.rerank_score.toFixed(2)}
             </span>
           </div>
-          <div className="h-1.5 w-full rounded-full bg-slate-700">
-            <div
-              className={`h-full rounded-full transition-all ${getScoreColor(source.relevance_score)}`}
-              style={{ width: `${scorePercent}%` }}
-            />
-          </div>
         </div>
+      </div>
 
-        {/* Expandable chunk text */}
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="mt-3 flex w-full items-center gap-1 text-xs text-slate-400 hover:text-slate-300 transition-colors"
+      {/* Text preview */}
+      <div
+        className="text-[12.5px] text-slate-400 leading-[1.6] m-0"
+        style={
+          expanded
+            ? undefined
+            : {
+                display: "-webkit-box",
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: "vertical" as const,
+                overflow: "hidden",
+              }
+        }
+      >
+        {source.text}
+      </div>
+
+      {/* Relevance bar */}
+      <div className="mt-[13px]">
+        <div className="flex justify-between items-center mb-1.5">
+          <span className="stat-label" style={{ fontSize: "9.5px" }}>
+            Relevance
+          </span>
+          <span
+            className="font-mono text-[12px] font-bold text-slate-200"
+            style={{ fontVariantNumeric: "tabular-nums" }}
+          >
+            {scorePercent}%
+          </span>
+        </div>
+        <div
+          className="rounded-full overflow-hidden"
+          style={{ height: 6, background: "rgba(255,255,255,0.06)" }}
         >
-          {expanded ? (
-            <ChevronDown className="h-3 w-3" />
-          ) : (
-            <ChevronRight className="h-3 w-3" />
-          )}
-          {expanded ? "Hide" : "Show"} chunk text
-        </button>
-        {expanded && (
-          <div className="mt-2 rounded-lg bg-slate-900/50 p-3">
-            <p className="whitespace-pre-wrap text-xs leading-relaxed text-slate-400">
-              {source.text}
-            </p>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+          <div
+            className="h-full rounded-full"
+            style={{
+              width: `${scorePercent}%`,
+              background: `linear-gradient(90deg, ${barColor}88, ${barColor})`,
+            }}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

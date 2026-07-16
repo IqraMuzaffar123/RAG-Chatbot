@@ -54,6 +54,7 @@ async def retrieve_and_answer(
     question: str,
     top_k: int = 5,
     use_reranking: bool = True,
+    conversation_history: list[dict[str, str]] | None = None,
 ) -> AsyncGenerator[dict[str, Any], None]:
     """Run the full retrieval + generation pipeline, yielding events.
 
@@ -114,7 +115,7 @@ async def retrieve_and_answer(
     generation_start = time.perf_counter()
     answer_tokens: list[str] = []
 
-    async for token in generate_stream(SYSTEM_PROMPT, user_message):
+    async for token in generate_stream(SYSTEM_PROMPT, user_message, conversation_history):
         answer_tokens.append(token)
         yield {"type": "token", "data": token}
 

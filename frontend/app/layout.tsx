@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/layout/Sidebar";
+import { AppShell } from "@/components/layout/AppShell";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,11 +29,14 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full bg-slate-900 text-slate-100">
-        <Sidebar />
-        <main className="ml-64 min-h-screen">
-          <div className="mx-auto max-w-7xl px-6 py-8">{children}</div>
-        </main>
+      <body
+        className="min-h-full text-slate-100"
+        style={{
+          background:
+            "radial-gradient(1200px 700px at 78% -10%, rgba(16,185,129,0.10), transparent 55%), radial-gradient(1000px 600px at 10% 110%, rgba(6,182,212,0.08), transparent 55%), linear-gradient(160deg, #06080d 0%, #0a0f1a 100%)",
+        }}
+      >
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

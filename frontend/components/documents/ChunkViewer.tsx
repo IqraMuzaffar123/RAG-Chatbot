@@ -1,17 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Hash, FileText } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ChevronLeft, ChevronRight, Layers, X } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetchChunks, type ChunkInfo } from "@/lib/api";
 
@@ -49,93 +39,182 @@ export function ChunkViewer({ docId, docName, isOpen, onClose }: ChunkViewerProp
     if (isOpen) setPage(1);
   }, [isOpen]);
 
-  const totalPages = Math.ceil(total / perPage);
+  const totalPages = Math.max(1, Math.ceil(total / perPage));
+
+  if (!isOpen) return null;
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-2xl max-h-[85vh] flex flex-col bg-slate-800 text-slate-100 ring-slate-700">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-white">
-            <FileText className="h-4 w-4 text-slate-400" />
-            {docName}
-          </DialogTitle>
-          <DialogDescription className="text-slate-400">
-            {total} chunk{total !== 1 ? "s" : ""} total
-          </DialogDescription>
-        </DialogHeader>
-
-        <ScrollArea className="flex-1 overflow-y-auto max-h-[60vh] pr-2">
-          <div className="space-y-3">
-            {loading
-              ? Array.from({ length: 3 }).map((_, i) => (
-                  <Skeleton
-                    key={i}
-                    className="h-32 rounded-lg bg-slate-700/50"
-                  />
-                ))
-              : chunks.map((chunk) => (
-                  <div
-                    key={chunk.chunk_id}
-                    className="rounded-lg border border-slate-700 bg-slate-900/50 p-4"
-                  >
-                    <div className="mb-2 flex items-center gap-2">
-                      <Badge
-                        variant="outline"
-                        className="border-slate-600 text-slate-300"
-                      >
-                        <Hash className="mr-0.5 h-3 w-3" />
-                        {chunk.chunk_index}
-                      </Badge>
-                      <Badge
-                        variant="outline"
-                        className="border-slate-600 text-slate-400"
-                      >
-                        Page {chunk.page_number}
-                      </Badge>
-                      <Badge
-                        variant="outline"
-                        className="border-slate-600 text-slate-400"
-                      >
-                        {chunk.token_count} tokens
-                      </Badge>
-                    </div>
-                    <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-300">
-                      {chunk.text}
-                    </p>
-                  </div>
-                ))}
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{
+        background: "rgba(3,5,10,0.72)",
+        backdropFilter: "blur(6px)",
+        padding: 32,
+        animation: "ad-fadein 0.2s ease",
+      }}
+      onClick={onClose}
+    >
+      <div
+        className="w-full flex flex-col overflow-hidden"
+        style={{
+          maxWidth: 760,
+          maxHeight: "86vh",
+          background: "linear-gradient(180deg, #0d1320, #0a0f1a)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: 18,
+          boxShadow: "0 30px 80px rgba(0,0,0,0.6)",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div
+          className="flex items-center justify-between shrink-0"
+          style={{
+            padding: "18px 22px",
+            borderBottom: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
+          <div className="flex items-center gap-[11px] min-w-0">
+            <span
+              className="flex items-center justify-center shrink-0"
+              style={{
+                width: 34,
+                height: 34,
+                borderRadius: 9,
+                background: "rgba(16,185,129,0.12)",
+                color: "#34d399",
+              }}
+            >
+              <Layers className="w-5 h-5" />
+            </span>
+            <div className="min-w-0">
+              <div className="font-mono text-[14.5px] font-semibold text-slate-50 truncate">
+                {docName}
+              </div>
+              <div className="text-[11.5px] text-slate-500 mt-0.5">
+                {total} chunks · page {page} of {totalPages}
+              </div>
+            </div>
           </div>
-        </ScrollArea>
+          <button
+            onClick={onClose}
+            className="flex items-center justify-center shrink-0 cursor-pointer transition-colors hover:text-slate-50 hover:bg-white/10"
+            style={{
+              width: 32,
+              height: 32,
+              color: "#94a3b8",
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: 9,
+            }}
+          >
+            <X className="w-[17px] h-[17px]" />
+          </button>
+        </div>
 
-        {/* Pagination */}
+        {/* Chunk list */}
+        <div
+          className="flex-1 overflow-y-auto flex flex-col gap-3"
+          style={{ padding: "18px 22px" }}
+        >
+          {loading
+            ? Array.from({ length: 3 }).map((_, i) => (
+                <Skeleton
+                  key={i}
+                  className="h-32 rounded-xl"
+                  style={{ background: "rgba(255,255,255,0.03)" }}
+                />
+              ))
+            : chunks.map((chunk) => (
+                <div
+                  key={chunk.chunk_id}
+                  style={{
+                    background: "rgba(255,255,255,0.025)",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    borderRadius: 12,
+                    padding: "14px 16px",
+                  }}
+                >
+                  <div className="flex items-center gap-2 mb-[9px]">
+                    <span
+                      className="font-mono text-[10.5px] font-bold"
+                      style={{
+                        color: "#5eead4",
+                        background: "rgba(16,185,129,0.1)",
+                        padding: "2px 8px",
+                        borderRadius: 6,
+                      }}
+                    >
+                      #{chunk.chunk_index}
+                    </span>
+                    <span
+                      className="text-[10.5px] text-slate-500"
+                      style={{
+                        background: "rgba(255,255,255,0.05)",
+                        padding: "2px 8px",
+                        borderRadius: 6,
+                      }}
+                    >
+                      page {chunk.page_number}
+                    </span>
+                    <span className="font-mono text-[10.5px] text-slate-500 ml-auto">
+                      {chunk.token_count} tokens
+                    </span>
+                  </div>
+                  <p className="text-[12.5px] text-slate-400 leading-[1.65] m-0 whitespace-pre-wrap">
+                    {chunk.text}
+                  </p>
+                </div>
+              ))}
+        </div>
+
+        {/* Pagination footer */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between border-t border-slate-700 pt-3">
-            <Button
-              variant="outline"
-              size="sm"
+          <div
+            className="flex items-center justify-between shrink-0"
+            style={{
+              padding: "14px 22px",
+              borderTop: "1px solid rgba(255,255,255,0.06)",
+            }}
+          >
+            <button
               disabled={page <= 1}
               onClick={() => setPage((p) => p - 1)}
-              className="border-slate-600 text-slate-300 hover:bg-slate-700"
+              className="flex items-center gap-[5px] text-[12.5px] font-medium cursor-pointer transition-colors"
+              style={{
+                color: page > 1 ? "#cbd5e1" : "#475569",
+                background:
+                  page > 1 ? "rgba(255,255,255,0.05)" : "transparent",
+                border: "1px solid rgba(255,255,255,0.08)",
+                padding: "8px 13px",
+                borderRadius: 9,
+              }}
             >
-              <ChevronLeft className="mr-1 h-4 w-4" />
-              Prev
-            </Button>
-            <span className="text-sm text-slate-400">
-              Page {page} of {totalPages}
+              <ChevronLeft className="w-[15px] h-[15px]" />
+              Previous
+            </button>
+            <span className="font-mono text-[12px] text-slate-500">
+              {page} / {totalPages}
             </span>
-            <Button
-              variant="outline"
-              size="sm"
+            <button
               disabled={page >= totalPages}
               onClick={() => setPage((p) => p + 1)}
-              className="border-slate-600 text-slate-300 hover:bg-slate-700"
+              className="flex items-center gap-[5px] text-[12.5px] font-medium cursor-pointer transition-colors"
+              style={{
+                color: page < totalPages ? "#cbd5e1" : "#475569",
+                background:
+                  page < totalPages ? "rgba(255,255,255,0.05)" : "transparent",
+                border: "1px solid rgba(255,255,255,0.08)",
+                padding: "8px 13px",
+                borderRadius: 9,
+              }}
             >
               Next
-              <ChevronRight className="ml-1 h-4 w-4" />
-            </Button>
+              <ChevronRight className="w-[15px] h-[15px]" />
+            </button>
           </div>
         )}
-      </DialogContent>
-    </Dialog>
+      </div>
+    </div>
   );
 }

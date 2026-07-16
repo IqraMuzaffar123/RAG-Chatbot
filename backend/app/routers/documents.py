@@ -51,6 +51,13 @@ async def upload_documents(files: list[UploadFile] = File(...)):
     Files are processed synchronously: extract -> chunk -> embed -> store.
     Each file's chunks are also added to the in-memory BM25 index.
     """
+    # Validate file count
+    if len(files) > 10:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Too many files ({len(files)}). Maximum 10 files per upload.",
+        )
+
     results: list[DocumentResponse] = []
 
     for upload in files:
@@ -64,6 +71,11 @@ async def upload_documents(files: list[UploadFile] = File(...)):
 
         # Read bytes and validate size
         file_bytes = await upload.read()
+        if len(file_bytes) == 0:
+            raise HTTPException(
+                status_code=400,
+                detail=f"File '{upload.filename}' is empty (0 bytes).",
+            )
         if len(file_bytes) > _MAX_FILE_SIZE:
             raise HTTPException(
                 status_code=400,

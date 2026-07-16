@@ -1,27 +1,24 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
 import { UploadZone } from "@/components/documents/UploadZone";
 import { DocumentTable } from "@/components/documents/DocumentTable";
 import { ChunkViewer } from "@/components/documents/ChunkViewer";
 import { DeleteDialog } from "@/components/documents/DeleteDialog";
+import { ToastProvider, useToast } from "@/components/ui/Toast";
 import {
   fetchDocuments,
   deleteDocument,
   type DocumentInfo,
 } from "@/lib/api";
 
-export default function DocumentsPage() {
+function DocumentsContent() {
   const [documents, setDocuments] = useState<DocumentInfo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  // Chunk viewer state
   const [viewingDoc, setViewingDoc] = useState<DocumentInfo | null>(null);
-
-  // Delete dialog state
   const [deletingDoc, setDeletingDoc] = useState<DocumentInfo | null>(null);
+  const { showToast } = useToast();
 
   const loadDocuments = useCallback(async () => {
     try {
@@ -39,41 +36,83 @@ export default function DocumentsPage() {
     loadDocuments();
   }, [loadDocuments]);
 
+  const handleUploadComplete = useCallback(async () => {
+    showToast("Documents uploaded successfully");
+    await loadDocuments();
+  }, [loadDocuments, showToast]);
+
   const handleDelete = async () => {
     if (!deletingDoc) return;
     try {
       await deleteDocument(deletingDoc.id);
       setDeletingDoc(null);
+      showToast(`Deleted ${deletingDoc.filename}`);
       await loadDocuments();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Delete failed");
+      showToast(
+        err instanceof Error ? err.message : "Delete failed",
+        "error"
+      );
       setDeletingDoc(null);
     }
   };
 
   return (
-    <div className="space-y-8">
+    <div
+      className="h-full overflow-y-auto"
+      style={{ padding: "36px 40px 60px" }}
+    >
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-white">Documents</h1>
-        <p className="mt-1 text-sm text-slate-400">
-          Upload and manage your knowledge base documents
-        </p>
+      <div className="flex items-end justify-between mb-6 flex-wrap gap-3 animate-in">
+        <div>
+          <h1 className="text-[26px] font-bold tracking-tight text-slate-50 m-0">
+            Documents
+          </h1>
+          <p className="mt-1.5 text-[13.5px] text-slate-400 m-0">
+            Manage your knowledge base
+          </p>
+        </div>
+        <span
+          className="font-mono text-[12px] text-slate-400"
+          style={{
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            padding: "7px 13px",
+            borderRadius: 99,
+          }}
+        >
+          {documents.length} documents
+        </span>
       </div>
 
       {/* Upload Zone */}
-      <UploadZone onUploadComplete={loadDocuments} />
+      <div className="animate-in delay-1">
+        <UploadZone onUploadComplete={handleUploadComplete} />
+      </div>
 
       {/* Error */}
       {error && (
-        <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+        <div
+          className="mt-4 rounded-2xl px-4 py-3 text-sm text-red-400"
+          style={{
+            background: "rgba(239,68,68,0.08)",
+            border: "1px solid rgba(239,68,68,0.2)",
+          }}
+        >
           {error}
         </div>
       )}
 
       {/* Document Table */}
       {loading ? (
-        <Skeleton className="h-64 rounded-xl bg-slate-800/60" />
+        <div className="mt-5 gradient-card" style={{ padding: "16px 18px" }}>
+          <div className="skeleton" style={{ width: 140, height: 18, marginBottom: 16 }} />
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} style={{ padding: "10px 0" }}>
+              <div className="skeleton" style={{ width: "90%", height: 14 }} />
+            </div>
+          ))}
+        </div>
       ) : (
         <DocumentTable
           documents={documents}
@@ -103,5 +142,13 @@ export default function DocumentsPage() {
         />
       )}
     </div>
+  );
+}
+
+export default function DocumentsPage() {
+  return (
+    <ToastProvider>
+      <DocumentsContent />
+    </ToastProvider>
   );
 }
