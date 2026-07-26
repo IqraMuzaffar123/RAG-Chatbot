@@ -59,7 +59,7 @@ export function ConfidenceBadge({ confidence }: ConfidenceBadgeProps) {
         />
       </svg>
       <span
-        className="font-mono text-[11px] font-bold"
+        className="font-mono text-[13px] font-bold"
         style={{ color }}
       >
         {pct}%

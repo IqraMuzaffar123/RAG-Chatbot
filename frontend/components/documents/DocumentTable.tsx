@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Eye, Trash2, FolderOpen, FileText, Search } from "lucide-react";
+import { Eye, Trash2, FolderOpen, FileText, Search, ArrowUp, ArrowDown, Layers, HardDrive } from "lucide-react";
 import type { DocumentInfo } from "@/lib/api";
 
 interface DocumentTableProps {
@@ -11,6 +11,9 @@ interface DocumentTableProps {
 }
 
 const typeFilters = ["ALL", "PDF", "DOCX", "TXT"] as const;
+
+type SortKey = "filename" | "file_type" | "num_chunks" | "file_size_bytes" | "uploaded_at";
+type SortDir = "asc" | "desc";
 
 function getTypeColor(type: string): string {
   switch (type.toLowerCase()) {
@@ -48,9 +51,27 @@ function formatSize(bytes: number): string {
   return (bytes / 1024).toFixed(0) + " KB";
 }
 
+function SortIcon({ column, sortKey, sortDir }: { column: SortKey; sortKey: SortKey; sortDir: SortDir }) {
+  if (column !== sortKey) return null;
+  return sortDir === "asc"
+    ? <ArrowUp className="w-3 h-3 inline ml-1 text-emerald-400" />
+    : <ArrowDown className="w-3 h-3 inline ml-1 text-emerald-400" />;
+}
+
 export function DocumentTable({ documents, onViewChunks, onDelete }: DocumentTableProps) {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState<string>("ALL");
+  const [sortKey, setSortKey] = useState<SortKey>("uploaded_at");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
+
+  const handleSort = (key: SortKey) => {
+    if (sortKey === key) {
+      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    } else {
+      setSortKey(key);
+      setSortDir(key === "filename" || key === "file_type" ? "asc" : "desc");
+    }
+  };
 
   const filtered = useMemo(() => {
     let result = documents;
@@ -61,18 +82,39 @@ export function DocumentTable({ documents, onViewChunks, onDelete }: DocumentTab
     if (typeFilter !== "ALL") {
       result = result.filter((d) => d.file_type.toLowerCase() === typeFilter.toLowerCase());
     }
-    return result;
-  }, [documents, search, typeFilter]);
+    const sorted = [...result].sort((a, b) => {
+      let cmp = 0;
+      switch (sortKey) {
+        case "filename":
+          cmp = a.filename.localeCompare(b.filename);
+          break;
+        case "file_type":
+          cmp = a.file_type.localeCompare(b.file_type);
+          break;
+        case "num_chunks":
+          cmp = a.num_chunks - b.num_chunks;
+          break;
+        case "file_size_bytes":
+          cmp = a.file_size_bytes - b.file_size_bytes;
+          break;
+        case "uploaded_at":
+          cmp = new Date(a.uploaded_at).getTime() - new Date(b.uploaded_at).getTime();
+          break;
+      }
+      return sortDir === "asc" ? cmp : -cmp;
+    });
+    return sorted;
+  }, [documents, search, typeFilter, sortKey, sortDir]);
 
   if (documents.length === 0) {
     return (
-      <div className="gradient-card mt-5 overflow-hidden">
+      <div className="gradient-card mt-4 overflow-hidden">
         <div className="flex flex-col items-center justify-center py-16">
           <FolderOpen className="mb-3 h-10 w-10 text-slate-600" />
-          <p className="text-sm font-medium text-slate-400">
+          <p className="text-[15px] font-medium text-slate-400">
             No documents uploaded yet
           </p>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-[14px] text-slate-500">
             Upload documents above to get started
           </p>
         </div>
@@ -80,40 +122,45 @@ export function DocumentTable({ documents, onViewChunks, onDelete }: DocumentTab
     );
   }
 
+  const colHeaderStyle: React.CSSProperties = {
+    cursor: "pointer",
+    userSelect: "none",
+  };
+
   return (
-    <div className="mt-5">
+    <div className="mt-4">
       {/* Search & Filter Bar */}
-      <div className="flex items-center gap-3 mb-3 animate-in delay-2">
+      <div className="flex items-center gap-2 mb-3 animate-in delay-2 flex-wrap">
         <div
-          className="flex items-center gap-2 flex-1"
+          className="flex items-center gap-2.5 flex-1 min-w-[200px]"
           style={{
             background: "rgba(255,255,255,0.04)",
             border: "1px solid rgba(255,255,255,0.08)",
             borderRadius: 10,
-            padding: "8px 12px",
+            padding: "10px 14px",
           }}
         >
-          <Search className="w-4 h-4 text-slate-500 shrink-0" />
+          <Search className="w-5 h-5 text-slate-500 shrink-0" />
           <input
             type="text"
             placeholder="Search documents..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 bg-transparent text-[14px] text-slate-200 placeholder:text-slate-600 outline-none border-none"
+            className="flex-1 bg-transparent text-[17px] text-slate-200 placeholder:text-slate-500 outline-none border-none"
           />
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           {typeFilters.map((f) => (
             <button
               key={f}
               onClick={() => setTypeFilter(f)}
-              className="cursor-pointer text-[11px] font-semibold uppercase tracking-wider transition-all duration-150"
+              className="cursor-pointer text-[15px] font-semibold uppercase tracking-wider transition-all duration-150"
               style={{
-                padding: "7px 12px",
+                padding: "9px 16px",
                 borderRadius: 8,
                 background: typeFilter === f ? "rgba(16,185,129,0.15)" : "rgba(255,255,255,0.03)",
                 border: `1px solid ${typeFilter === f ? "rgba(16,185,129,0.3)" : "rgba(255,255,255,0.06)"}`,
-                color: typeFilter === f ? "#34d399" : "#64748b",
+                color: typeFilter === f ? "#34d399" : "#94a3b8",
               }}
             >
               {f}
@@ -122,17 +169,17 @@ export function DocumentTable({ documents, onViewChunks, onDelete }: DocumentTab
         </div>
       </div>
 
-      {/* Table */}
+      {/* Table Card */}
       <div className="gradient-card overflow-hidden animate-in delay-3">
         {/* Header */}
         <div
           className="flex items-center justify-between"
           style={{
-            padding: "15px 18px",
+            padding: "14px 20px",
             borderBottom: "1px solid rgba(255,255,255,0.05)",
           }}
         >
-          <span className="text-[14px] font-semibold text-slate-50">
+          <span className="text-[18px] font-semibold text-slate-50">
             All Documents{" "}
             <span className="font-mono text-slate-500 font-normal">
               ({filtered.length})
@@ -140,96 +187,172 @@ export function DocumentTable({ documents, onViewChunks, onDelete }: DocumentTab
           </span>
         </div>
 
-        {/* Column headers */}
+        {/* Desktop Column headers (hidden on mobile) */}
         <div
-          className="grid items-center"
+          className="items-center hidden lg:grid"
           style={{
             gridTemplateColumns: "2.4fr 0.8fr 0.7fr 0.8fr 1fr 0.7fr",
-            padding: "11px 18px",
+            padding: "12px 20px",
             background: "rgba(255,255,255,0.02)",
             borderBottom: "1px solid rgba(255,255,255,0.05)",
-            fontSize: 10,
+            fontSize: 14,
             textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            color: "#64748b",
+            letterSpacing: "0.08em",
+            color: "#94a3b8",
             fontWeight: 600,
           }}
         >
-          <span>Filename</span>
-          <span>Type</span>
-          <span>Chunks</span>
-          <span>Size</span>
-          <span>Uploaded</span>
+          <span style={colHeaderStyle} onClick={() => handleSort("filename")}>
+            Filename <SortIcon column="filename" sortKey={sortKey} sortDir={sortDir} />
+          </span>
+          <span style={colHeaderStyle} onClick={() => handleSort("file_type")}>
+            Type <SortIcon column="file_type" sortKey={sortKey} sortDir={sortDir} />
+          </span>
+          <span style={colHeaderStyle} onClick={() => handleSort("num_chunks")}>
+            Chunks <SortIcon column="num_chunks" sortKey={sortKey} sortDir={sortDir} />
+          </span>
+          <span style={colHeaderStyle} onClick={() => handleSort("file_size_bytes")}>
+            Size <SortIcon column="file_size_bytes" sortKey={sortKey} sortDir={sortDir} />
+          </span>
+          <span style={colHeaderStyle} onClick={() => handleSort("uploaded_at")}>
+            Uploaded <SortIcon column="uploaded_at" sortKey={sortKey} sortDir={sortDir} />
+          </span>
           <span className="text-right">Actions</span>
         </div>
 
         {/* Rows */}
         {filtered.length === 0 ? (
           <div className="flex items-center justify-center py-12">
-            <p className="text-sm text-slate-500">No documents match your search</p>
+            <p className="text-[15px] text-slate-500">No documents match your search</p>
           </div>
         ) : (
           filtered.map((doc) => (
-            <div
-              key={doc.id}
-              className="grid items-center transition-colors duration-150 hover:bg-white/[0.03]"
-              style={{
-                gridTemplateColumns: "2.4fr 0.8fr 0.7fr 0.8fr 1fr 0.7fr",
-                padding: "12px 18px",
-                borderBottom: "1px solid rgba(255,255,255,0.035)",
-              }}
-            >
-              <span className="flex items-center gap-2.5 min-w-0">
-                <FileText
-                  className="w-[17px] h-[17px] shrink-0"
-                  style={{ color: getTypeColor(doc.file_type) }}
-                />
-                <span className="font-mono text-[13px] text-slate-200 truncate">
-                  {doc.filename}
+            <div key={doc.id}>
+              {/* Desktop row (hidden on mobile) */}
+              <div
+                className="hidden lg:grid items-center transition-colors duration-150 hover:bg-white/[0.04]"
+                style={{
+                  gridTemplateColumns: "2.4fr 0.8fr 0.7fr 0.8fr 1fr 0.7fr",
+                  padding: "14px 20px",
+                  borderBottom: "1px solid rgba(255,255,255,0.04)",
+                }}
+              >
+                <span className="flex items-center gap-2.5 min-w-0">
+                  <FileText
+                    className="w-[18px] h-[18px] shrink-0"
+                    style={{ color: getTypeColor(doc.file_type) }}
+                  />
+                  <span className="font-mono text-[17px] text-slate-200 truncate">
+                    {doc.filename}
+                  </span>
                 </span>
-              </span>
-              <span>
-                <span className={getTypeBadgeClass(doc.file_type)}>
-                  {doc.file_type.toUpperCase()}
+                <span>
+                  <span className={getTypeBadgeClass(doc.file_type)}>
+                    {doc.file_type.toUpperCase()}
+                  </span>
                 </span>
-              </span>
-              <span className="font-mono text-[12.5px] text-slate-400">
-                {doc.num_chunks}
-              </span>
-              <span className="font-mono text-[12.5px] text-slate-400">
-                {formatSize(doc.file_size_bytes)}
-              </span>
-              <span className="text-[12px] text-slate-500">
-                {formatRelativeTime(doc.uploaded_at)}
-              </span>
-              <span className="flex items-center justify-end gap-1">
-                <button
-                  onClick={() => onViewChunks(doc)}
-                  className="flex items-center gap-[5px] text-[11.5px] text-slate-400 font-medium cursor-pointer transition-colors hover:text-slate-200"
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.07)",
-                    padding: "6px 10px",
-                    borderRadius: 8,
-                  }}
-                >
-                  <Eye className="w-[14px] h-[14px]" />
-                  Chunks
-                </button>
-                <button
-                  onClick={() => onDelete(doc)}
-                  className="flex items-center justify-center cursor-pointer transition-colors text-slate-500 hover:text-red-400 hover:bg-red-500/10"
-                  style={{
-                    width: 30,
-                    height: 30,
-                    background: "transparent",
-                    border: "1px solid transparent",
-                    borderRadius: 8,
-                  }}
-                >
-                  <Trash2 className="w-[15px] h-[15px]" />
-                </button>
-              </span>
+                <span className="font-mono text-[16px] text-slate-400">
+                  {doc.num_chunks}
+                </span>
+                <span className="font-mono text-[16px] text-slate-400">
+                  {formatSize(doc.file_size_bytes)}
+                </span>
+                <span className="text-[16px] text-slate-500">
+                  {formatRelativeTime(doc.uploaded_at)}
+                </span>
+                <span className="flex items-center justify-end gap-1.5">
+                  <button
+                    onClick={() => onViewChunks(doc)}
+                    className="flex items-center gap-1.5 text-[15px] text-slate-400 font-medium cursor-pointer transition-colors hover:text-slate-200"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.07)",
+                      padding: "7px 12px",
+                      borderRadius: 8,
+                    }}
+                  >
+                    <Eye className="w-4 h-4" />
+                    Chunks
+                  </button>
+                  <button
+                    onClick={() => onDelete(doc)}
+                    className="flex items-center justify-center cursor-pointer transition-colors text-slate-500 hover:text-red-400 hover:bg-red-500/10"
+                    style={{
+                      width: 34,
+                      height: 34,
+                      background: "transparent",
+                      border: "1px solid transparent",
+                      borderRadius: 8,
+                    }}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </span>
+              </div>
+
+              {/* Mobile card row (hidden on desktop) */}
+              <div
+                className="lg:hidden flex items-center justify-between transition-colors duration-150 hover:bg-white/[0.04]"
+                style={{
+                  padding: "14px 16px",
+                  borderBottom: "1px solid rgba(255,255,255,0.04)",
+                }}
+              >
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <FileText
+                    className="w-[20px] h-[20px] shrink-0"
+                    style={{ color: getTypeColor(doc.file_type) }}
+                  />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-mono text-[17px] text-slate-200 truncate">
+                        {doc.filename}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3 text-[15px] text-slate-500">
+                      <span className={getTypeBadgeClass(doc.file_type)}>
+                        {doc.file_type.toUpperCase()}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Layers className="w-3.5 h-3.5" />
+                        {doc.num_chunks} chunks
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <HardDrive className="w-3.5 h-3.5" />
+                        {formatSize(doc.file_size_bytes)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                  <button
+                    onClick={() => onViewChunks(doc)}
+                    className="flex items-center gap-1.5 text-[15px] text-slate-400 font-medium cursor-pointer transition-colors hover:text-slate-200"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.07)",
+                      padding: "7px 12px",
+                      borderRadius: 8,
+                    }}
+                  >
+                    <Eye className="w-4 h-4" />
+                    Chunks
+                  </button>
+                  <button
+                    onClick={() => onDelete(doc)}
+                    className="flex items-center justify-center cursor-pointer transition-colors text-slate-500 hover:text-red-400 hover:bg-red-500/10"
+                    style={{
+                      width: 34,
+                      height: 34,
+                      background: "transparent",
+                      border: "1px solid transparent",
+                      borderRadius: 8,
+                    }}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
             </div>
           ))
         )}

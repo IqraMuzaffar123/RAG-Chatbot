@@ -38,7 +38,7 @@ export function DocTypeChart({ documentsByType }: DocTypeChartProps) {
           }}
         >
           <FileText className="w-4 h-4 text-teal-300" />
-          <span className="text-[14px] font-semibold text-slate-50">
+          <span className="text-[17px] font-semibold text-slate-50">
             Document Types
           </span>
         </div>
@@ -129,10 +129,10 @@ export function DocTypeChart({ documentsByType }: DocTypeChartProps) {
                     boxShadow: `0 0 8px ${shadow}`,
                   }}
                 />
-                <span className="text-[14px] text-slate-300 font-medium" style={{ minWidth: 50 }}>
+                <span className="text-[15px] text-slate-300 font-medium" style={{ minWidth: 50 }}>
                   {type.toUpperCase()}
                 </span>
-                <span className="font-mono text-[13px] text-slate-400">
+                <span className="font-mono text-[14px] text-slate-400">
                   {count} · {pct}%
                 </span>
               </div>

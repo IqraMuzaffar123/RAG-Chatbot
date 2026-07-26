@@ -8,9 +8,10 @@ import type { SourceInfo } from "@/lib/api";
 interface SourcePanelProps {
   sources: SourceInfo[];
   confidence: number | null;
+  query?: string;
 }
 
-export function SourcePanel({ sources, confidence }: SourcePanelProps) {
+export function SourcePanel({ sources, confidence, query }: SourcePanelProps) {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
@@ -23,12 +24,12 @@ export function SourcePanel({ sources, confidence }: SourcePanelProps) {
       >
         <div className="flex items-center gap-[9px]">
           <BookOpen className="w-4 h-4 text-teal-300" />
-          <span className="text-[14px] font-semibold text-slate-50">
+          <span className="text-[17px] font-semibold text-slate-50">
             Sources
           </span>
           {sources.length > 0 && (
             <span
-              className="font-mono text-[11px] text-slate-500"
+              className="font-mono text-[14px] text-slate-500"
               style={{
                 background: "rgba(255,255,255,0.06)",
                 padding: "2px 8px",
@@ -47,11 +48,11 @@ export function SourcePanel({ sources, confidence }: SourcePanelProps) {
         {sources.length === 0 ? (
           <div className="flex flex-col items-center text-center" style={{ padding: "70px 24px", color: "#475569" }}>
             <BookOpen className="w-[34px] h-[34px]" />
-            <div className="text-[13.5px] text-slate-400 mt-3.5 font-medium">
+            <div className="text-[16px] text-slate-400 mt-3.5 font-medium">
               Sources will appear here
             </div>
             <div
-              className="text-[12px] text-slate-500 mt-[5px] leading-[1.5]"
+              className="text-[14px] text-slate-500 mt-[5px] leading-[1.5]"
               style={{ maxWidth: 220 }}
             >
               Ask a question and the most relevant document chunks — with
@@ -61,7 +62,7 @@ export function SourcePanel({ sources, confidence }: SourcePanelProps) {
         ) : (
           <div className="flex flex-col gap-3">
             {sources.map((source, i) => (
-              <SourceCard key={source.chunk_id} source={source} index={i} />
+              <SourceCard key={source.chunk_id} source={source} index={i} query={query} />
             ))}
           </div>
         )}

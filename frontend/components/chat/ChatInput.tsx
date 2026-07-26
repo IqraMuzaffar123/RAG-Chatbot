@@ -59,7 +59,7 @@ export function ChatInput({ onSend, disabled, maxWidth = 760 }: ChatInputProps) 
             onKeyDown={handleKeyDown}
             placeholder="Ask a question about your documents..."
             disabled={disabled}
-            className="flex-1 bg-transparent border-none outline-none text-slate-50 text-[14px] placeholder:text-slate-500"
+            className="flex-1 bg-transparent border-none outline-none text-slate-50 text-[16px] placeholder:text-slate-500"
             style={{ fontFamily: "inherit" }}
           />
           <button
@@ -84,7 +84,7 @@ export function ChatInput({ onSend, disabled, maxWidth = 760 }: ChatInputProps) 
             <ArrowUp className="w-[18px] h-[18px]" />
           </button>
         </div>
-        <div className="text-center text-[10.5px] text-slate-600 mt-[9px]">
+        <div className="text-center text-[13px] text-slate-600 mt-[9px]">
           Answers are grounded in your documents and cite their sources.
         </div>
       </div>

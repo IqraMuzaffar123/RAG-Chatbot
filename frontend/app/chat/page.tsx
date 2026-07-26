@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ChatInput } from "@/components/chat/ChatInput";
 import { ChatMessages } from "@/components/chat/ChatMessages";
@@ -10,6 +10,14 @@ import { saveConversation, loadConversation } from "@/lib/conversationStore";
 import { Columns2, Square, RotateCcw } from "lucide-react";
 
 export default function ChatPage() {
+  return (
+    <Suspense fallback={<div className="h-full w-full flex items-center justify-center text-slate-500">Loading chat…</div>}>
+      <ChatPageInner />
+    </Suspense>
+  );
+}
+
+function ChatPageInner() {
   const { messages, sources, confidence, isLoading, sendMessage, resetChat, setMessages, setSources } = useChat();
   const [layout, setLayout] = useState<"split" | "focus">("split");
   const [conversationId, setConversationId] = useState<string | null>(null);
@@ -39,6 +47,9 @@ export default function ChatPage() {
 
   const isSplit = layout === "split";
   const hasMessages = messages.length > 0;
+
+  // Get the last user query for keyword highlighting in sources
+  const lastQuery = [...messages].reverse().find((m) => m.role === "user")?.content || "";
 
   const handleCitationClick = useCallback((documentName: string, pageNumber: number) => {
     if (!isSplit) setLayout("split");
@@ -80,10 +91,10 @@ export default function ChatPage() {
         }}
       >
         <div>
-          <div className="text-[16px] font-bold tracking-tight text-slate-50">
+          <div className="text-[18px] font-bold tracking-tight text-slate-50">
             Chat
           </div>
-          <div className="text-[12px] text-slate-500 mt-0.5">
+          <div className="text-[14px] text-slate-500 mt-0.5">
             Ask questions across your documents
           </div>
         </div>
@@ -97,7 +108,7 @@ export default function ChatPage() {
                 // Clear URL param
                 window.history.replaceState({}, "", "/chat");
               }}
-              className="flex items-center gap-1.5 text-[12px] font-semibold cursor-pointer transition-all duration-150 hover:border-emerald-500/30 hover:text-emerald-400"
+              className="flex items-center gap-1.5 text-[14px] font-semibold cursor-pointer transition-all duration-150 hover:border-emerald-500/30 hover:text-emerald-400"
               style={{
                 padding: "7px 12px",
                 borderRadius: 9,
@@ -125,7 +136,7 @@ export default function ChatPage() {
             >
               <button
                 onClick={() => setLayout("split")}
-                className="flex items-center gap-1.5 text-[12px] font-semibold cursor-pointer transition-colors"
+                className="flex items-center gap-1.5 text-[14px] font-semibold cursor-pointer transition-colors"
                 style={{
                   padding: "6px 11px",
                   borderRadius: 8,
@@ -139,7 +150,7 @@ export default function ChatPage() {
               </button>
               <button
                 onClick={() => setLayout("focus")}
-                className="flex items-center gap-1.5 text-[12px] font-semibold cursor-pointer transition-colors"
+                className="flex items-center gap-1.5 text-[14px] font-semibold cursor-pointer transition-colors"
                 style={{
                   padding: "6px 11px",
                   borderRadius: 8,
@@ -191,7 +202,7 @@ export default function ChatPage() {
               background: "rgba(6,8,13,0.5)",
             }}
           >
-            <SourcePanel sources={sources} confidence={confidence} />
+            <SourcePanel sources={sources} confidence={confidence} query={lastQuery} />
           </div>
         )}
       </div>

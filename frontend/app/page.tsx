@@ -30,7 +30,7 @@ export default function DashboardPage() {
         <h1 className="text-3xl font-bold tracking-tight text-slate-50 m-0">
           Dashboard
         </h1>
-        <p className="mt-1.5 text-[15px] text-slate-400 m-0">
+        <p className="mt-1.5 text-[17px] text-slate-400 m-0">
           Your knowledge base at a glance
         </p>
       </div>
@@ -73,10 +73,10 @@ export default function DashboardPage() {
             <Upload className="w-5 h-5 text-emerald-400" />
           </span>
           <div>
-            <div className="text-[15px] font-semibold text-slate-100">
+            <div className="text-[17px] font-semibold text-slate-100">
               Upload Documents
             </div>
-            <div className="text-[13px] text-slate-500 mt-0.5">
+            <div className="text-[15px] text-slate-500 mt-0.5">
               Add PDF, DOCX, or TXT files to your knowledge base
             </div>
           </div>
@@ -100,10 +100,10 @@ export default function DashboardPage() {
             <MessageSquare className="w-5 h-5 text-cyan-400" />
           </span>
           <div>
-            <div className="text-[15px] font-semibold text-slate-100">
+            <div className="text-[17px] font-semibold text-slate-100">
               Ask a Question
             </div>
-            <div className="text-[13px] text-slate-500 mt-0.5">
+            <div className="text-[15px] text-slate-500 mt-0.5">
               Get AI-powered answers with citations from your documents
             </div>
           </div>

@@ -100,7 +100,7 @@ export function StatsCards({ stats, loading }: StatsCardsProps) {
             {stats ? format(stats[key]) : "--"}
           </div>
 
-          <div className="mt-2 text-[13px] text-slate-500">{desc}</div>
+          <div className="mt-2 text-[15px] text-slate-500">{desc}</div>
         </div>
       ))}
     </div>

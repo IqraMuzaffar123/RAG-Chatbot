@@ -93,10 +93,10 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
         </span>
         {!collapsed && (
           <div>
-            <div className="text-[18px] font-bold tracking-tight leading-none text-white">
+            <div className="text-[20px] font-bold tracking-tight leading-none text-white">
               AskDocs
             </div>
-            <div className="text-[12px] text-slate-500 mt-1 whitespace-nowrap">
+            <div className="text-[14px] text-slate-500 mt-1 whitespace-nowrap">
               Ask your documents anything
             </div>
           </div>
@@ -109,14 +109,14 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
           <span
             className="inline-flex items-center gap-[5px] whitespace-nowrap"
             style={{
-              fontSize: "9.5px",
+              fontSize: "13px",
               fontWeight: 600,
               textTransform: "uppercase",
               letterSpacing: "0.1em",
               color: "#5eead4",
               background: "rgba(16,185,129,0.1)",
               border: "1px solid rgba(16,185,129,0.2)",
-              padding: "4px 9px",
+              padding: "5px 11px",
               borderRadius: 99,
             }}
           >
@@ -137,7 +137,7 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
               href={href}
               title={collapsed ? label : undefined}
               className={cn(
-                "flex items-center rounded-[10px] text-[15px] font-medium transition-all duration-150",
+                "flex items-center rounded-[10px] text-[17px] font-medium transition-all duration-150",
                 collapsed ? "justify-center" : "gap-3 border-l-[3px]",
                 isActive
                   ? collapsed
@@ -162,7 +162,7 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
           <div className="px-2 mb-2">
             <span
               style={{
-                fontSize: "9.5px",
+                fontSize: "13px",
                 fontWeight: 600,
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
@@ -182,7 +182,7 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
                 <MessageCircle className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                 <Link
                   href={`/chat?c=${conv.id}`}
-                  className="flex-1 min-w-0 text-[12px] text-slate-500 truncate hover:text-slate-300 transition-colors"
+                  className="flex-1 min-w-0 text-[14px] text-slate-500 truncate hover:text-slate-300 transition-colors"
                   style={{ textDecoration: "none" }}
                 >
                   {conv.title}
@@ -217,10 +217,10 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
             }}
           >
             <div className="flex items-center justify-between">
-              <span className="text-[12px] text-slate-400 font-medium">
+              <span className="text-[15px] text-slate-400 font-medium">
                 Index status
               </span>
-              <span className="inline-flex items-center gap-[5px] text-[10.5px] font-semibold text-emerald-400">
+              <span className="inline-flex items-center gap-[5px] text-[14px] font-semibold text-emerald-400">
                 <span
                   className="rounded-full"
                   style={{
@@ -240,7 +240,7 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
                 background: "rgba(255,255,255,0.06)",
               }}
             />
-            <div className="text-[12px] text-slate-500 leading-[1.5]">
+            <div className="text-[14px] text-slate-500 leading-[1.5]">
               Hybrid BM25 + Vector
               <br />
               Cross-encoder re-rank · Citation-forced
@@ -251,7 +251,7 @@ export function Sidebar({ collapsed: controlledCollapsed, onCollapsedChange }: S
         {/* Collapse toggle + version */}
         <div className={cn("flex items-center pt-3", collapsed ? "justify-center" : "justify-between px-1.5")}>
           {!collapsed && (
-            <span className="text-[10.5px] text-slate-600">AskDocs v1.0</span>
+            <span className="text-[13px] text-slate-600">AskDocs v1.0</span>
           )}
           <button
             onClick={toggleCollapsed}

@@ -60,24 +60,24 @@ function DocumentsContent() {
   return (
     <div
       className="h-full overflow-y-auto"
-      style={{ padding: "36px 40px 60px" }}
+      style={{ padding: "24px 32px 36px" }}
     >
       {/* Header */}
-      <div className="flex items-end justify-between mb-6 flex-wrap gap-3 animate-in">
+      <div className="flex items-end justify-between mb-4 flex-wrap gap-3 animate-in">
         <div>
-          <h1 className="text-[26px] font-bold tracking-tight text-slate-50 m-0">
+          <h1 className="text-[32px] font-bold text-slate-50 m-0" style={{ letterSpacing: "-0.025em" }}>
             Documents
           </h1>
-          <p className="mt-1.5 text-[13.5px] text-slate-400 m-0">
+          <p className="mt-1 text-[17px] text-slate-400 m-0">
             Manage your knowledge base
           </p>
         </div>
         <span
-          className="font-mono text-[12px] text-slate-400"
+          className="font-mono text-[16px] text-slate-300 font-medium"
           style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.06)",
-            padding: "7px 13px",
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            padding: "8px 16px",
             borderRadius: 99,
           }}
         >
@@ -93,7 +93,7 @@ function DocumentsContent() {
       {/* Error */}
       {error && (
         <div
-          className="mt-4 rounded-2xl px-4 py-3 text-sm text-red-400"
+          className="mt-4 rounded-2xl px-4 py-3 text-[15px] text-red-400"
           style={{
             background: "rgba(239,68,68,0.08)",
             border: "1px solid rgba(239,68,68,0.2)",

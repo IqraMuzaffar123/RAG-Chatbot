@@ -131,10 +131,10 @@ export function ChatMessages({
               <Brain className="w-[38px] h-[38px]" />
             </span>
 
-            <h2 className="text-[22px] font-bold tracking-tight text-slate-50 mt-[22px] m-0 animate-in delay-1">
+            <h2 className="text-[24px] font-bold tracking-tight text-slate-50 mt-[22px] m-0 animate-in delay-1">
               Ask your documents anything
             </h2>
-            <p className="text-[13.5px] text-slate-400 mt-2 leading-[1.55] m-0 animate-in delay-2" style={{ maxWidth: 410 }}>
+            <p className="text-[16px] text-slate-400 mt-2 leading-[1.55] m-0 animate-in delay-2" style={{ maxWidth: 410 }}>
               AI-powered answers with citations and confidence scores
             </p>
 
@@ -150,7 +150,7 @@ export function ChatMessages({
                     background: "rgba(255,255,255,0.03)",
                     border: "1px solid rgba(255,255,255,0.07)",
                     borderRadius: 12,
-                    fontSize: "12.5px",
+                    fontSize: "16px",
                     color: "#cbd5e1",
                   }}
                 >
@@ -174,7 +174,7 @@ export function ChatMessages({
             return (
               <div key={i} className="flex justify-end mb-[22px] animate-in">
                 <div
-                  className="text-[13.5px] leading-[1.5] text-white"
+                  className="text-[16px] leading-[1.5] text-white"
                   style={{
                     maxWidth: "70%",
                     background: "linear-gradient(135deg, #059669, #10b981)",
@@ -212,7 +212,7 @@ export function ChatMessages({
                 >
                   <Brain className="w-[15px] h-[15px]" />
                 </span>
-                <span className="text-[12px] font-semibold text-slate-200">
+                <span className="text-[14px] font-semibold text-slate-200">
                   AskDocs
                 </span>
                 {isDone && confidence != null && (
@@ -222,7 +222,7 @@ export function ChatMessages({
 
               {/* AI bubble */}
               <div
-                className="group relative text-[13.5px] text-slate-300"
+                className="group relative text-[16px] text-slate-300"
                 style={{
                   maxWidth: "85%",
                   background: isError

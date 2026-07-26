@@ -12,7 +12,7 @@ function confidenceBadge(confidence: number) {
   if (confidence >= 0.8) {
     return (
       <span
-        className="font-mono text-[11px] font-bold rounded-full"
+        className="font-mono text-[14px] font-bold rounded-full"
         style={{
           color: "#34d399",
           background: "rgba(16,185,129,0.12)",
@@ -26,7 +26,7 @@ function confidenceBadge(confidence: number) {
   if (confidence >= 0.5) {
     return (
       <span
-        className="font-mono text-[11px] font-bold rounded-full"
+        className="font-mono text-[14px] font-bold rounded-full"
         style={{
           color: "#fbbf24",
           background: "rgba(245,158,11,0.12)",
@@ -39,7 +39,7 @@ function confidenceBadge(confidence: number) {
   }
   return (
     <span
-      className="font-mono text-[11px] font-bold rounded-full"
+      className="font-mono text-[14px] font-bold rounded-full"
       style={{
         color: "#f87171",
         background: "rgba(239,68,68,0.12)",
@@ -79,7 +79,7 @@ export function RecentQueries({ queries }: RecentQueriesProps) {
       >
         <div className="flex items-center gap-[9px]">
           <MessageSquare className="w-5 h-5 text-teal-300" />
-          <span className="text-[16px] font-semibold text-slate-50">
+          <span className="text-[17px] font-semibold text-slate-50">
             Recent Queries
           </span>
         </div>
@@ -109,14 +109,14 @@ export function RecentQueries({ queries }: RecentQueriesProps) {
                 }}
               >
                 <MessageSquare className="w-4 h-4 text-slate-600 shrink-0" />
-                <span className="flex-1 min-w-0 text-[14px] text-slate-500 truncate">{q}</span>
-                <span className="font-mono text-[12px] font-bold rounded-full"
+                <span className="flex-1 min-w-0 text-[16px] text-slate-500 truncate">{q}</span>
+                <span className="font-mono text-[14px] font-bold rounded-full"
                   style={{ color: "#475569", background: "rgba(255,255,255,0.06)", padding: "3px 9px" }}>—</span>
-                <span className="font-mono text-[12px] text-slate-600 shrink-0 w-[60px] text-right">—</span>
+                <span className="font-mono text-[14px] text-slate-600 shrink-0 w-[60px] text-right">—</span>
               </div>
             ))}
             <div className="flex items-center justify-center flex-1">
-              <p className="text-[13px] text-slate-500">Ask a question in the chat to see results here</p>
+              <p className="text-[15px] text-slate-500">Ask a question in the chat to see results here</p>
             </div>
           </div>
         ) : (
@@ -133,11 +133,11 @@ export function RecentQueries({ queries }: RecentQueriesProps) {
               }}
             >
               <MessageSquare className="w-4 h-4 text-slate-600 shrink-0" />
-              <span className="flex-1 min-w-0 text-[14px] text-slate-300 truncate">
+              <span className="flex-1 min-w-0 text-[16px] text-slate-300 truncate">
                 {q.question}
               </span>
               {confidenceBadge(q.confidence)}
-              <span className="font-mono text-[11px] text-slate-500 shrink-0 w-[66px] text-right">
+              <span className="font-mono text-[14px] text-slate-500 shrink-0 w-[66px] text-right">
                 {relativeTime(q.timestamp)}
               </span>
             </div>
