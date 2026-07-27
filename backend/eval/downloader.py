@@ -327,11 +327,6 @@ def _nq_fallback() -> list[dict]:
             "context": "The square root of a number is a value that, when multiplied by itself, gives the original number. The square root of 144 is 12, because 12 × 12 = 144.",
             "ground_truth": "12",
         },
-        {
-            "question": "What is the main ingredient in guacamole?",
-            "context": "Guacamole is an avocado-based dip, spread, or salad first developed in Mexico. In addition to avocados, a typical recipe may contain lime juice, salt, cilantro, onions, and tomatoes.",
-            "ground_truth": "avocado",
-        },
     ]
 
     assert len(synthetic) == SAMPLE_SIZE, (
@@ -340,10 +335,82 @@ def _nq_fallback() -> list[dict]:
     return synthetic
 
 
+def _try_download_nq(timeout_seconds: int = 120) -> list[dict]:
+    """Attempt to download NQ in a background thread with a timeout.
+
+    Returns an empty list if it times out or fails.
+    """
+    import threading
+
+    candidates: list[dict] = []
+    error: list[Exception] = []
+
+    def _worker() -> None:
+        try:
+            from datasets import load_dataset  # type: ignore
+
+            ds = load_dataset(
+                "google-research-datasets/natural_questions",
+                split="validation",
+                streaming=True,
+            )
+
+            rng = random.Random(SEED)
+
+            for ex in ds:
+                annotations = ex.get("annotations", {})
+                short_answers = annotations.get("short_answers", [])
+
+                text_answer = None
+                for sa_list in short_answers:
+                    texts = sa_list.get("text", [])
+                    if texts:
+                        text_answer = texts[0]
+                        break
+
+                if text_answer is None:
+                    continue
+
+                document_tokens = ex.get("document", {}).get("tokens", {})
+                token_texts = document_tokens.get("token", [])
+                is_html = document_tokens.get("is_html", [])
+                plain_tokens = [t for t, h in zip(token_texts, is_html) if not h]
+                context = " ".join(plain_tokens[:300])
+
+                candidates.append({
+                    "question": ex["question"]["text"],
+                    "context": context,
+                    "ground_truth": text_answer,
+                })
+
+                if len(candidates) >= SAMPLE_SIZE * 5:
+                    break
+        except Exception as exc:
+            error.append(exc)
+
+    thread = threading.Thread(target=_worker, daemon=True)
+    thread.start()
+    thread.join(timeout=timeout_seconds)
+
+    if thread.is_alive():
+        logger.warning(
+            "NQ download timed out after %ds; switching to synthetic fallback.",
+            timeout_seconds,
+        )
+        return []
+
+    if error:
+        logger.warning("NQ download raised %s; switching to synthetic fallback.", error[0])
+        return []
+
+    return candidates
+
+
 def download_natural_questions() -> list[dict]:
     """Download Natural Questions validation split and extract short answers.
 
     Falls back to synthetic questions if the dataset is too slow or complex.
+    NQ is notoriously large; a 120-second thread timeout guards against hangs.
     Caches result to backend/eval/datasets/natural_questions.json.
     """
     cache_path = DATASETS_DIR / "natural_questions.json"
@@ -352,76 +419,22 @@ def download_natural_questions() -> list[dict]:
         with open(cache_path, "r", encoding="utf-8") as f:
             return json.load(f)
 
-    result: list[dict] = []
-    try:
-        logger.info("Downloading Natural Questions from HuggingFace …")
-        from datasets import load_dataset  # type: ignore
+    logger.info("Downloading Natural Questions from HuggingFace (120s timeout) …")
+    candidates = _try_download_nq(timeout_seconds=120)
 
-        # NQ is very large; stream and collect only what we need
-        ds = load_dataset(
-            "google-research-datasets/natural_questions",
-            split="validation",
-            streaming=True,
-            trust_remote_code=True,
-        )
-
-        rng = random.Random(SEED)
-        candidates: list[dict] = []
-
-        # Iterate through examples looking for short answers
-        for ex in ds:
-            annotations = ex.get("annotations", {})
-            short_answers = annotations.get("short_answers", [])
-
-            # short_answers is a list-of-lists (one per annotation)
-            text_answer = None
-            for sa_list in short_answers:
-                texts = sa_list.get("text", [])
-                if texts:
-                    text_answer = texts[0]
-                    break
-
-            if text_answer is None:
-                continue
-
-            # Extract document text for context
-            document_tokens = ex.get("document", {}).get("tokens", {})
-            token_texts = document_tokens.get("token", [])
-            is_html = document_tokens.get("is_html", [])
-
-            # Filter out HTML tokens to get plain text
-            plain_tokens = [
-                t for t, h in zip(token_texts, is_html) if not h
-            ]
-            context = " ".join(plain_tokens[:300])  # ~300 tokens context window
-
-            candidates.append({
-                "question": ex["question"]["text"],
-                "context": context,
-                "ground_truth": text_answer,
-            })
-
-            if len(candidates) >= SAMPLE_SIZE * 5:
-                # Collected enough candidates to sample from
-                break
-
-        if len(candidates) >= SAMPLE_SIZE:
-            result = rng.sample(candidates, SAMPLE_SIZE)
-        elif len(candidates) > 0:
-            logger.warning(
-                "Only found %d NQ candidates (wanted %d); using all + fallback padding",
-                len(candidates),
-                SAMPLE_SIZE,
-            )
-            fallback = _nq_fallback()
-            result = candidates + fallback[: SAMPLE_SIZE - len(candidates)]
-        else:
-            result = _nq_fallback()
-
-    except Exception as exc:
+    rng = random.Random(SEED)
+    if len(candidates) >= SAMPLE_SIZE:
+        result = rng.sample(candidates, SAMPLE_SIZE)
+    elif len(candidates) > 0:
         logger.warning(
-            "Natural Questions download failed (%s); using synthetic fallback.", exc
+            "Only found %d NQ candidates (wanted %d); padding with synthetic fallback.",
+            len(candidates),
+            SAMPLE_SIZE,
         )
+        fallback = _nq_fallback()
+        result = candidates + fallback[: SAMPLE_SIZE - len(candidates)]
+    else:
+        logger.warning("Using fully synthetic NQ fallback (50 general-knowledge Qs).")
         result = _nq_fallback()
 
     _ensure_datasets_dir()
