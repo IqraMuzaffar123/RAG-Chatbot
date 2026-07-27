@@ -178,6 +178,51 @@ Step-by-step manual testing guide with edge cases. Run through everything before
 
 ---
 
+## Phase 6: Benchmarks (RAG Evaluation)
+
+### 6.1 Benchmarks Page Load
+
+- [ ] Click "Benchmarks" in the sidebar
+- [ ] Page loads with title "Benchmarks" and "Run Evaluation" button
+- [ ] If no previous runs: shows empty state for charts and tables
+- [ ] If previous runs exist: shows score cards, charts, and history
+
+### 6.2 Run Evaluation
+
+- [ ] Click "Run Evaluation" button
+- [ ] Button changes to "Running..." with spinner
+- [ ] Progress bar shows current dataset and config (e.g., "45/150 — SQuAD 2.0, Hybrid config")
+- [ ] After completion (~5 min): results appear automatically
+
+### 6.3 Verify Results
+
+- [ ] **6 Score Cards**: Faithfulness, Answer Relevancy, Context Precision, Context Recall, Answer Correctness, Hallucination Rate
+- [ ] Each card shows: score (big number), progress bar (color-coded), quality label
+- [ ] Hallucination Rate card is green when LOW (inverted from others)
+- [ ] **Radar Chart**: Spider chart with 5 axes, emerald filled polygon
+- [ ] **Ablation Chart**: 4 grouped bars per metric (Vector Only, BM25 Only, Hybrid, Hybrid+Reranker)
+- [ ] Hybrid+Reranker (emerald) should score highest on most metrics
+- [ ] **Dataset Table**: 3 rows (SQuAD 2.0, Natural Questions, HotpotQA) with color-coded cells
+- [ ] **Eval History**: Shows the completed run with timestamp, duration, status badge
+
+### 6.4 API Verification
+
+```bash
+# Status
+curl http://localhost:8000/api/eval/status
+# Expected: {"status": "completed", "run_id": "...", ...}
+
+# Results
+curl http://localhost:8000/api/eval/results
+# Expected: JSON with overall, by_dataset, by_config, matrix
+
+# History
+curl http://localhost:8000/api/eval/history
+# Expected: {"runs": [...]}
+```
+
+---
+
 ## Quick Pre-Demo Checklist
 
 Run through these 10 items right before hitting record:
@@ -193,4 +238,5 @@ Run through these 10 items right before hitting record:
 - [ ] Source panel shows cards with relevance scores
 - [ ] Confidence badge appears (green for good questions)
 - [ ] Dashboard updated with query count and recent queries
+- [ ] Benchmarks page shows score cards, radar chart, ablation chart
 - [ ] No console errors in browser DevTools

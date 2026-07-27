@@ -21,7 +21,8 @@
 - **Multi-Format Ingestion** -- Upload PDF, DOCX, and TXT files with page-level extraction and semantic chunking
 - **Streaming Responses** -- Token-by-token Server-Sent Events (SSE) with sources delivered before the answer begins
 - **One-Command Deploy** -- `docker-compose up` launches frontend, backend, and ChromaDB with demo data auto-loaded
-- **LLM Provider Flexibility** -- Switch between OpenAI and Anthropic with a single environment variable
+- **LLM Provider Flexibility** -- Switch between OpenAI, Anthropic, or Ollama (fully offline) with a single environment variable
+- **RAG Benchmarks Dashboard** -- RAGAS-based evaluation on SQuAD 2.0, Natural Questions, and HotpotQA with 6 metrics (Faithfulness, Answer Relevancy, Context Precision, Context Recall, Answer Correctness, Hallucination Rate), 4-config ablation study, radar chart, and grouped bar chart
 
 ---
 
@@ -118,6 +119,10 @@ Open [http://localhost:3000](http://localhost:3000). Demo documents are loaded a
 | `DELETE` | `/api/documents/{doc_id}` | Delete document and all its chunks |
 | `POST` | `/api/chat` | Query the knowledge base (SSE streaming response) |
 | `GET` | `/api/stats` | Dashboard statistics and recent queries |
+| `POST` | `/api/eval/run` | Start a RAGAS evaluation run (background) |
+| `GET` | `/api/eval/status` | Check evaluation run progress |
+| `GET` | `/api/eval/results` | Get latest completed evaluation results |
+| `GET` | `/api/eval/history` | List past evaluation runs |
 
 Full interactive docs available at [http://localhost:8000/docs](http://localhost:8000/docs) (Swagger UI).
 
@@ -139,7 +144,8 @@ askdocs-rag/
 │       ├── routers/
 │       │   ├── documents.py           # Upload, list, delete, view chunks
 │       │   ├── chat.py                # Query endpoint (SSE streaming)
-│       │   └── stats.py               # Dashboard statistics
+│       │   ├── stats.py               # Dashboard statistics
+│       │   └── eval.py                # Evaluation run/status/results/history
 │       ├── services/
 │       │   ├── ingestion.py           # Extract -> Chunk -> Embed -> Store
 │       │   ├── text_extractor.py      # PDF, DOCX, TXT extraction
@@ -155,6 +161,11 @@ askdocs-rag/
 │       │   └── schemas.py             # Pydantic request/response models
 │       └── data/
 │           └── demo_docs/             # Pre-loaded demo documents
+│   └── eval/
+│       ├── downloader.py              # Download SQuAD, NQ, HotpotQA datasets
+│       ├── configs.py                 # 4 retrieval configurations for ablation
+│       ├── runner.py                  # Evaluation orchestrator (RAGAS)
+│       └── results.py                 # SQLite storage for eval runs/results
 │
 └── frontend/
     ├── Dockerfile
@@ -163,7 +174,8 @@ askdocs-rag/
         ├── layout.tsx                 # Root layout with sidebar navigation
         ├── page.tsx                   # Dashboard (stats, recent queries, charts)
         ├── documents/page.tsx         # Document upload and management
-        └── chat/page.tsx              # Chat interface with source panel
+        ├── chat/page.tsx              # Chat interface with source panel
+        └── benchmarks/page.tsx        # RAG evaluation benchmarks dashboard
 ```
 
 ---
@@ -184,6 +196,57 @@ askdocs-rag/
 3. **Cross-Encoder Re-Ranking** -- The top 20 fused candidates are re-scored by a cross-encoder (`ms-marco-MiniLM-L-6-v2`) that evaluates each (query, chunk) pair together. The top 5 are kept.
 4. **LLM Generation** -- The top 5 chunks are sent to the LLM with a system prompt enforcing citation format and hallucination refusal. The answer streams token-by-token via SSE.
 5. **Response Assembly** -- Citations are parsed, confidence is computed from re-ranker scores, and retrieval metadata (timing, candidate counts) is attached.
+
+---
+
+## RAG Benchmarks
+
+AskDocs includes a built-in evaluation system using [RAGAS](https://docs.ragas.io/) — the industry-standard RAG evaluation framework.
+
+### Datasets
+
+| Dataset | What It Tests | Questions |
+|---------|--------------|-----------|
+| SQuAD 2.0 | Single-document factual Q&A | 50 |
+| Natural Questions | Real Google search questions | 50 |
+| HotpotQA | Multi-hop reasoning across documents | 50 |
+
+### Metrics
+
+| Metric | What It Measures |
+|--------|-----------------|
+| Faithfulness | Is the answer grounded in retrieved context? |
+| Answer Relevancy | Does the answer address the question? |
+| Context Precision | Are the top retrieved chunks relevant? |
+| Context Recall | Did retrieval find all relevant chunks? |
+| Answer Correctness | Does it match the ground truth? |
+| Hallucination Rate | How much is fabricated? (lower is better) |
+
+### Ablation Study
+
+Every eval run tests **4 retrieval configurations** to prove each architectural layer adds value:
+
+1. **Vector Only** — ChromaDB cosine similarity
+2. **BM25 Only** — Keyword search
+3. **Hybrid (RRF)** — Vector + BM25 with Reciprocal Rank Fusion
+4. **Hybrid + Reranker** — Hybrid + cross-encoder re-ranking (production config)
+
+### Running an Evaluation
+
+Open http://localhost:3000/benchmarks and click **"Run Evaluation"**. The run takes ~5 minutes and costs ~$1.80 in OpenAI API credits. Results are displayed with score cards, a radar chart, an ablation comparison bar chart, and a per-dataset breakdown table.
+
+Or via API:
+
+```bash
+# Start evaluation
+curl -X POST http://localhost:8000/api/eval/run
+
+# Check progress
+curl http://localhost:8000/api/eval/status
+
+# Get results
+curl http://localhost:8000/api/eval/results
+```
 
 ---
 
