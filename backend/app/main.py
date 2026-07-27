@@ -99,6 +99,10 @@ async def lifespan(app: FastAPI):
     await init_db()
     logger.info("Stats database ready.")
 
+    # 6. Initialize eval tables (SQLite)
+    from eval.results import init_eval_tables
+    await init_eval_tables()
+
     logger.info("AskDocs backend startup complete.")
     yield
     # --- Shutdown ---
@@ -124,11 +128,12 @@ app.add_middleware(
 )
 
 # --- Routers ---
-from app.routers import documents, chat, stats  # noqa: E402
+from app.routers import documents, chat, stats, eval as eval_router  # noqa: E402
 
 app.include_router(documents.router)
 app.include_router(chat.router)
 app.include_router(stats.router)
+app.include_router(eval_router.router)
 
 
 import uuid
