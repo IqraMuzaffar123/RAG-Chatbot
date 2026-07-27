@@ -38,3 +38,6 @@ chroma_data/
 
 # Models cache
 .cache/
+
+# Eval dataset cache (downloaded at runtime, not committed)
+backend/eval/datasets/*.json
