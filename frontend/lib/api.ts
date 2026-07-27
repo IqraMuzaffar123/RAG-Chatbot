@@ -162,3 +162,84 @@ export async function chatStream(
   if (!res.ok) throw new Error(await parseError(res, `Chat failed: ${res.statusText}`));
   return res;
 }
+
+// ── Evaluation API ─────────────────────────────────────
+
+export interface EvalScores {
+  faithfulness: number;
+  answer_relevancy: number;
+  context_precision: number;
+  context_recall: number;
+  answer_correctness: number;
+  hallucination_rate: number;
+}
+
+export interface EvalResultRow {
+  dataset: string;
+  config: string;
+  faithfulness: number;
+  answer_relevancy: number;
+  context_precision: number;
+  context_recall: number;
+  answer_correctness: number;
+  hallucination_rate: number;
+  num_questions: number;
+  avg_retrieval_time_ms: number;
+  avg_answer_time_ms: number;
+}
+
+export interface EvalResults {
+  run_id: string;
+  completed_at: string;
+  duration_seconds: number;
+  total_questions: number;
+  overall: EvalScores;
+  by_dataset: Record<string, EvalScores>;
+  by_config: Record<string, EvalScores>;
+  matrix: EvalResultRow[];
+}
+
+export interface EvalRun {
+  id: string;
+  status: string;
+  started_at: string;
+  completed_at?: string;
+  duration_seconds?: number;
+  total_questions?: number;
+  progress?: string;
+  error_message?: string;
+}
+
+export interface EvalStatus {
+  status: string;
+  run_id?: string;
+  progress?: string;
+  started_at?: string;
+  completed_at?: string;
+  duration_seconds?: number;
+  error_message?: string;
+}
+
+export async function startEvalRun(): Promise<{ run_id: string; status: string }> {
+  const res = await fetch(`${API_BASE}/api/eval/run`, { method: "POST" });
+  if (!res.ok) throw new Error(await parseError(res, "Failed to start eval"));
+  return res.json();
+}
+
+export async function fetchEvalStatus(): Promise<EvalStatus> {
+  const res = await fetch(`${API_BASE}/api/eval/status`);
+  if (!res.ok) throw new Error(await parseError(res, "Failed to fetch eval status"));
+  return res.json();
+}
+
+export async function fetchEvalResults(): Promise<EvalResults> {
+  const res = await fetch(`${API_BASE}/api/eval/results`);
+  if (!res.ok) throw new Error(await parseError(res, "Failed to fetch eval results"));
+  return res.json();
+}
+
+export async function fetchEvalHistory(): Promise<{ runs: EvalRun[] }> {
+  const res = await fetch(`${API_BASE}/api/eval/history`);
+  if (!res.ok) throw new Error(await parseError(res, "Failed to fetch eval history"));
+  return res.json();
+}

@@ -12,6 +12,7 @@ import {
   PanelLeft,
   MessageCircle,
   X,
+  BarChart3,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { listConversations, deleteConversation, type StoredConversation } from "@/lib/conversationStore";
@@ -20,6 +21,7 @@ const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/documents", label: "Documents", icon: FolderOpen },
   { href: "/chat", label: "Chat", icon: MessageSquare },
+  { href: "/benchmarks", label: "Benchmarks", icon: BarChart3 },
 ];
 
 interface SidebarProps {
